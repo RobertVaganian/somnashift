@@ -1,0 +1,86 @@
+/* A brief response on contact, a slightly slower settle on release. */
+:root{--motion-quick:110ms;--motion-settle:190ms;--motion-ease:cubic-bezier(.2,.75,.25,1)}
+html{scroll-behavior:auto;scrollbar-gutter:stable}
+body{overflow-x:clip}
+button,a[data-nav],summary{touch-action:manipulation}
+button:not(:disabled),a[data-nav],summary{transition:background-color var(--motion-quick),border-color var(--motion-quick),color var(--motion-quick),box-shadow var(--motion-quick),transform var(--motion-settle) var(--motion-ease)}
+button:active:not(:disabled),a[data-nav]:active{transform:scale(.98);transition-duration:60ms}
+.patient-card:active:not(:disabled){transform:scale(.99);background:var(--accent-soft)}
+.bottom-nav .nav-item:active{transform:scale(.95)}
+.bottom-nav .nav-item svg{transition:transform 180ms var(--motion-ease)}
+.bottom-nav .nav-item.active svg{transform:translateY(-1px)}
+.icon-button:active:not(:disabled){transform:scale(.91)}
+.filter-tabs button{position:relative;transition:color 110ms,border-color 170ms var(--motion-ease)}
+.field-label textarea,.field-label input,.field-label select,.patient-search input,.action-search input{transition:border-color 110ms,box-shadow 110ms;background-clip:padding-box}
+/* One close-fitting ring, shared by fields and custom choice controls. */
+textarea:focus,input:focus,select:focus{border-color:var(--accent);box-shadow:none}
+button:focus-visible,a:focus-visible,summary:focus-visible{outline:2px solid var(--warn);outline-offset:2px}
+input:focus-visible,textarea:focus-visible,select:focus-visible,.owner-trigger:focus-visible{outline:2px solid var(--accent);outline-offset:0;box-shadow:none}
+input[type=checkbox]:focus-visible,input[type=radio]:focus-visible{outline-offset:2px}
+.dialog-body{overscroll-behavior:contain;-webkit-overflow-scrolling:touch;scrollbar-gutter:stable;scroll-padding:18px}
+.dialog-head,.dialog-footer{flex-shrink:0}
+.modal.motion-dialog::backdrop{background:rgba(23,17,13,var(--scrim-alpha,.4));backdrop-filter:none;animation:backdrop-in 180ms ease-out}
+.modal.motion-dialog[data-closing]::backdrop{animation:backdrop-out 130ms ease-in forwards}
+.modal.motion-dialog{overscroll-behavior:contain;max-height:calc(var(--usable-height,100dvh) - 40px);transform-origin:50% 100%}
+.modal.motion-dialog[data-closing]{pointer-events:none}
+.modal.motion-dialog .dialog-head>button{min-height:44px;min-width:44px}
+html[data-dialog-open=true]{overflow:hidden}
+html[data-dialog-open=true] body{position:fixed;left:0;right:0;width:auto;overflow:hidden}
+.notice.success{position:fixed;z-index:80;right:32px;bottom:24px;width:calc(100vw - 64px);max-width:510px;margin:0!important;box-shadow:0 8px 28px #20140d1c;pointer-events:auto}
+.notice.success .notice-copy{font-size:15px;line-height:1.5}
+.notice.success>button{min-height:44px;min-width:44px}
+.details-motion{overflow:clip}
+@keyframes backdrop-in{from{background:#17110d00}to{background:#17110d66}}
+@keyframes backdrop-out{from{background:#17110d66}to{background:#17110d00}}
+@media(hover:hover) and (pointer:fine){
+ .patient-card:hover>svg,.action-patient:hover>svg{transform:translateX(2px)}
+ .patient-card>svg,.action-patient>svg{transition:transform 150ms var(--motion-ease)}
+}
+@media(hover:none){
+ .button.primary:hover{filter:none}.button.secondary:hover{background:var(--paper);border-color:var(--line)}.patient-card:hover{background:transparent}.patient-card.selected:hover{background:var(--paper)}
+ .icon-button:hover{background:none}.button.text:hover{text-decoration:none;color:var(--accent)}
+ .patient-card:active:not(:disabled){background:var(--accent-soft)}
+}
+@media(max-width:900px){
+ .modal.motion-dialog[open]{margin:auto auto calc(max(12px,env(safe-area-inset-bottom)) + var(--keyboard-inset,0px));max-height:calc(var(--usable-height,100dvh) - 24px);border-radius:20px 20px 15px 15px}
+ .modal.motion-dialog .dialog-head{position:relative;padding-top:30px;touch-action:pan-x}
+ .modal.motion-dialog .dialog-head:before{content:"";position:absolute;top:10px;left:calc(50% - 17px);width:34px;height:4px;border-radius:4px;background:var(--line-strong)}
+ .modal.motion-dialog .dialog-footer{padding-bottom:max(15px,env(safe-area-inset-bottom))}
+ .notice.success{left:12px;right:12px;bottom:calc(86px + env(safe-area-inset-bottom));width:auto;max-width:none;border-radius:12px;padding:10px 12px;gap:10px}
+ .bottom-nav{padding-bottom:calc(8px + env(safe-area-inset-bottom))}
+ .bottom-nav .nav-item,.mobile-brand>.icon-button,.text-button,.button.text.small{min-height:44px}
+ .sheet-body,.patient-board,.action-board,.now-immediate{overflow-anchor:none}
+}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+html[data-reduce-motion=true] *,html[data-reduce-motion=true] *::before,html[data-reduce-motion=true] *::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+html[data-reduce-motion=true] button:active:not(:disabled),html[data-reduce-motion=true] a[data-nav]:active{transform:none}
+@media(prefers-reduced-motion:reduce){button:active:not(:disabled),a[data-nav]:active{transform:none}}
+
+body,.sidebar,.detail-panel,.action-card,.bottom-nav,.mobile-brand,.modal,.dialog-head,.dialog-footer{transition:background-color 150ms,color 150ms,border-color 150ms}
+
+.motion-exit{position:fixed;inset:0;z-index:100;pointer-events:none;background:#17110d66}.motion-exit *{pointer-events:none!important}
+
+@media(max-width:900px){.dialog-body input,.dialog-body textarea,.dialog-body select{font-size:16px}}
+
+@media(max-width:900px){body:has(.handoff-bar) .notice.success{bottom:calc(86px + var(--handoff-bar-height,76px) + env(safe-area-inset-bottom))}}
+
+/* Owner choices share the app's typography, touch targets and three appearances. */
+.owner-picker{position:relative;min-width:0}
+.owner-picker>input[type=hidden]{display:none}
+.owner-trigger{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;min-height:48px;padding:11px 12px;border:1px solid var(--line-strong);border-radius:8px;background:var(--bg);color:var(--ink);font-size:16px;font-weight:400;line-height:1.6;text-align:left}
+.owner-trigger[aria-expanded=true]{border-color:var(--accent)}
+.owner-trigger>svg{flex-shrink:0;transition:transform 150ms var(--motion-ease)}
+.owner-trigger[aria-expanded=true]>svg{transform:rotate(180deg)}
+.owner-options{position:fixed;inset:auto;margin:0;padding:5px;overflow:auto;overscroll-behavior:contain;border:1px solid var(--line-strong);border-radius:10px;background:var(--paper);color:var(--ink);box-shadow:0 8px 24px #00000026;box-sizing:border-box;font-family:var(--font);font-size:16px;font-weight:400;line-height:1.4;z-index:1000}
+.owner-options:not(:popover-open):not(.is-open){display:none}
+.owner-option{display:flex;align-items:center;gap:12px;min-height:48px;padding:9px 10px;border-radius:6px;cursor:pointer;touch-action:manipulation}
+.owner-option[data-active]{background:var(--accent-soft);box-shadow:inset 2px 0 var(--accent)}
+@media(hover:hover){.owner-option:hover{background:var(--subtle)}}
+.owner-option[aria-selected=true]{color:var(--accent);font-weight:600}
+.owner-initials{display:grid;place-items:center;flex:0 0 28px;width:28px;height:28px;border-radius:50%;background:var(--subtle);color:var(--muted);font-size:11px;letter-spacing:.01em;font-weight:650}
+.owner-check{display:flex;align-items:center;margin-left:auto;padding-left:12px;visibility:hidden;color:var(--accent)}
+.owner-option[aria-selected=true] .owner-check{visibility:visible}
+.owner-trigger:active:not(:disabled){transform:none}
+@media(forced-colors:active){.owner-option[data-active]{outline:1px solid Highlight}.owner-option[aria-selected=true]{color:Highlight}}
+@media(prefers-reduced-motion:reduce){.owner-trigger>svg{transition:none}}
+html[data-reduce-motion=true] .owner-trigger>svg{transition:none}
