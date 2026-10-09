@@ -4,6 +4,8 @@ SomnaShift needs a static host. The app and guided demo use no backend, secrets 
 
 ## GitHub Pages
 
+The public project is [RobertVaganian/somnashift](https://github.com/RobertVaganian/somnashift). Its Pages deployment uses the workflows included here. For a separate copy:
+
 1. Create an empty repository named `somnashift` and upload this project, including `.github/workflows/`.
 2. In **Settings → Pages → Build and deployment**, choose **GitHub Actions** as the source.
 3. Run **Publish Pages** from the Actions tab, or push to `main` after enabling Pages.
@@ -12,7 +14,7 @@ SomnaShift needs a static host. The app and guided demo use no backend, secrets 
 
 The **Verify** workflow runs syntax checks, tests and the static build on pushes and pull requests. **Publish Pages** repeats those checks before deploying `dist/`. Neither workflow writes source commits. Node.js 22 is selected explicitly; there is no dependency-install step because the application has no npm dependencies.
 
-Pages availability depends on repository visibility and the account’s plan. The current preview’s access settings are independent of GitHub visibility.
+Pages availability depends on repository visibility and the account’s plan. Other hosted previews have their own access settings, independent of GitHub visibility.
 
 ## Other static hosts
 

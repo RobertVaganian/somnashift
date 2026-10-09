@@ -43,6 +43,10 @@ The brief fit at 320, 390 and 430 px across the three appearances. The first-dra
 
 [Model, queries, controls and limits →](on-device-search.md)
 
+## Published deployment
+
+The GitHub Pages deployment passed the same checks and build. Browser smoke checks confirmed the project subpath, the case study’s live phone views and an explicit model download on the public origin. The owner-change question returned Jordan Lee → Taylor Brooks from the submitted source pair. No API credential was configured.
+
 ## Remaining evaluation
 
 These responsive checks used desktop Chromium viewports. Physical iPhone/Safari, the virtual keyboard, safe areas, VoiceOver and broader assistive-technology behavior remain to be evaluated. No hardware haptics, physical-device frame rate or participant comprehension results are claimed.

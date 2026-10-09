@@ -29,7 +29,7 @@ The worker runs the WASM backend on one thread, so WebGPU and cross-origin isola
 
 ## Browser checks
 
-Development checks used the real quantized model in Chromium, including repeat queries with a loaded worker:
+Browser checks used the real quantized model in Chromium, including repeat queries with a loaded worker:
 
 | Question | Observed result |
 | --- | --- |
@@ -39,7 +39,7 @@ Development checks used the real quantized model in Chromium, including repeat q
 | Who is responsible for the family conversation? | Room 414’s owner change ranked first for this paraphrase. |
 | How is the weather in Tokyo? | No close source match in the application. |
 
-These are bounded development examples, not an accuracy benchmark or clinical validation. Device performance, broader query phrasing, physical iPhone/Safari and VoiceOver still need evaluation.
+These five queries are functional checks, not an accuracy benchmark or clinical validation. Device performance, broader query phrasing, physical iPhone/Safari and VoiceOver still need evaluation.
 
 The automated tests cover readable version pairs, draft exclusion, identity changes, source identifiers, input escaping, stale results, explicit model startup, repeated requests, cancellation, failure and deadlines. Existing handoff, recovery, routing and contrast checks also pass.
 

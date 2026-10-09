@@ -6,8 +6,8 @@
 <p align="center">Patient notes, named follow-ups and the exact version you reviewed.<br>A mobile shift-handoff prototype by <strong>Robert Vaganian</strong>.</p>
 
 <p align="center">
-  <a href="https://somnashift.robertvaganyan.chatgpt.site/case-study">Case study</a> ·
-  <a href="https://somnashift.robertvaganyan.chatgpt.site/shift?scene=draft">Interactive prototype</a> ·
+  <a href="https://robertvaganian.github.io/somnashift/case-study">Case study</a> ·
+  <a href="https://robertvaganian.github.io/somnashift/shift/?scene=draft">Interactive prototype</a> ·
   <a href="#on-device-ai-find-the-change-keep-the-source">On-device AI</a> ·
   <a href="#run-locally">Run locally</a>
 </p>
@@ -47,7 +47,7 @@ Search supports stop, retry, unload and model-cache removal. Source links open t
 
 First use needs a connection. Later reuse depends on retained browser caches and device resources; full offline availability is not guaranteed. [Implementation, scope and checked queries →](docs/on-device-search.md)
 
-[Open the local-search sample](https://somnashift.robertvaganyan.chatgpt.site/shift?scene=assist&screen=detail&brief=1&briefmode=local) · [Read the AI case-study section](https://somnashift.robertvaganyan.chatgpt.site/case-study#on-device-ai)
+[Open the local-search sample](https://robertvaganian.github.io/somnashift/shift/?scene=assist&screen=detail&brief=1&briefmode=local) · [Read the AI case-study section](https://robertvaganian.github.io/somnashift/case-study#on-device-ai)
 
 ## Designed for the working screen
 
@@ -76,12 +76,12 @@ Three decisions hold the flow together:
 
 | Start here | What to try |
 | --- | --- |
-| [Outgoing handoff](https://somnashift.robertvaganyan.chatgpt.site/shift?scene=draft) | Assign room 414’s missing owner, choose Jordan, then send and simulate delivery. |
-| [Updated handoff](https://somnashift.robertvaganyan.chatgpt.site/shift?scene=update&screen=detail) | Inspect v2 and see why the earlier review still belongs to v1. |
-| [Incoming work](https://somnashift.robertvaganyan.chatgpt.site/now?scene=work) | Find the next assigned action, record a result and inspect its history. |
-| [Case study](https://somnashift.robertvaganyan.chatgpt.site/case-study) | Explore the decisions, live phone views and captioned 35-second screen walkthrough. |
+| [Outgoing handoff](https://robertvaganian.github.io/somnashift/shift/?scene=draft) | Assign room 414’s missing owner, choose Jordan, then send and simulate delivery. |
+| [Updated handoff](https://robertvaganian.github.io/somnashift/shift/?scene=update&screen=detail) | Inspect v2 and see why the earlier review still belongs to v1. |
+| [Incoming work](https://robertvaganian.github.io/somnashift/now/?scene=work) | Find the next assigned action, record a result and inspect its history. |
+| [Case study](https://robertvaganian.github.io/somnashift/case-study) | Explore the decisions, live phone views and captioned 35-second screen walkthrough. |
 
-Sample scenes use fictional records and leave the saved local workspace untouched. Demo settings includes role switching, larger text, reduced motion, offline simulation and reset. Hosted access is controlled separately; the current hosted preview is owner-private. The complete app also runs locally.
+Sample scenes use fictional records and leave the saved local workspace untouched. Demo settings includes role switching, larger text, reduced motion, offline simulation and reset. The public demo runs on GitHub Pages; the complete app also runs locally.
 
 ## Run locally
 

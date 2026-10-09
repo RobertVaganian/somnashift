@@ -4,3 +4,6 @@
 *.ico binary
 *.woff2 binary
 *.mp4 binary
+
+# dist contains the editable application source.
+dist/** linguist-vendored=false linguist-generated=false
