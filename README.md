@@ -1,30 +1,55 @@
-<p align="center">
-  <img src="docs/media/mark.svg" width="48" height="48" alt="SomnaShift mark">
-</p>
+<div align="center">
 
-<h1 align="center">SomnaShift</h1>
-<p align="center">Patient notes, named follow-ups and the exact version you reviewed.<br>A mobile shift-handoff prototype by <strong>Robert Vaganian</strong>.</p>
+  <picture>
+    <source media="(prefers-reduced-motion: reduce)" srcset="docs/media/mark-still.png">
+    <img src="docs/media/mark-animated.gif" alt="SomnaShift — two paths passing a shift forward" width="88" height="88">
+  </picture>
 
-<p align="center">
-  <a href="https://robertvaganian.github.io/somnashift/case-study">Case study</a> ·
-  <a href="https://robertvaganian.github.io/somnashift/shift/?scene=draft">Interactive prototype</a> ·
-  <a href="#on-device-ai-find-the-change-keep-the-source">On-device AI</a> ·
-  <a href="#run-locally">Run locally</a>
-</p>
+  # SomnaShift
+
+  **Carry the context forward.**
+
+  Mobile shift handoff · Product design & working prototype<br>
+  Designed by **Robert Vaganian**
+
+  [![Version](https://img.shields.io/badge/version-0.8.0-854e40?style=flat&labelColor=342c29)](package.json)
+  [![Checks](https://img.shields.io/github/actions/workflow/status/RobertVaganian/somnashift/verify.yml?branch=main&label=checks&style=flat&labelColor=342c29&color=854e40)](https://github.com/RobertVaganian/somnashift/actions/workflows/verify.yml)
+  [![JavaScript](https://img.shields.io/badge/JavaScript-ES_modules-854e40?style=flat&labelColor=342c29)](dist/app.mjs)
+  [![Node](https://img.shields.io/badge/Node-%E2%89%A522-854e40?style=flat&labelColor=342c29)](package.json)
+  [![Local AI](https://img.shields.io/badge/on--device_AI-MiniLM-854e40?style=flat&labelColor=342c29)](#on-device-ai-find-the-change-keep-the-source)
+  [![Mobile first](https://img.shields.io/badge/mobile-first-854e40?style=flat&labelColor=342c29)](#from-phone-to-desktop)
+
+  [Open the prototype](https://robertvaganian.github.io/somnashift/) ·
+  [Case study](https://robertvaganian.github.io/somnashift/case-study/) ·
+  [Try local AI](https://robertvaganian.github.io/somnashift/shift/?scene=assist&screen=detail&brief=1&briefmode=local) ·
+  [Run locally](#run-locally)
+
+</div>
+
+---
+
+A sent message is not a completed handoff. SomnaShift keeps patient notes, named follow-ups and the exact reviewed version together as one colleague hands over to the next.
+
+**The scenario:** Jordan has reviewed **v1**. Alex adds a room-419 note and sends **v2**. The earlier confirmation stays with v1; Jordan can find the new information, ask a question and acknowledge v2 separately. Work completed afterward gets its own record.
 
 ![SomnaShift: prepare a handoff, review its changes and follow through](docs/media/overview.jpg)
 
-## The handoff is only the start
+## Inside the handoff
 
-The outgoing colleague needs to leave a clear record. The incoming colleague needs to know what changed, what they have reviewed and what still needs doing. SomnaShift connects those tasks without treating a sent message as a completed handoff.
+Six moments from the working mobile prototype. Select a screen to inspect it at full size.
 
-| Moment | What the prototype does |
-| --- | --- |
-| Prepare | Brings four fictional patient notes together; surfaces missing task owners before sending. |
-| Review | Separates sent, delivered, viewed and acknowledged. A confirmation applies to one submitted version. |
-| Update | Shows exact differences and keeps the earlier acknowledgment attached to its original version. |
-| Follow through | Groups assigned actions by expected time. A factual completion goes into a separate work history. |
-| Resume | Recovers the patient, reading position and unsent input locally, without submitting it. |
+<table>
+  <tr>
+    <td width="33%" valign="top" align="center"><strong>01 · Prepare</strong><br><br><a href="docs/screenshots/portfolio/01-prepare.jpg"><img src="docs/screenshots/portfolio/01-prepare.jpg" width="240" alt="Outgoing shift with four patient notes and an action missing its owner"></a><br><sub>Find the outstanding checks before sending.</sub></td>
+    <td width="33%" valign="top" align="center"><strong>02 · Clarify</strong><br><br><a href="docs/screenshots/portfolio/03-clarify.jpg"><img src="docs/screenshots/portfolio/03-clarify.jpg" width="240" alt="A patient-specific clarification and its reply"></a><br><sub>Keep the question with its patient and version.</sub></td>
+    <td width="33%" valign="top" align="center"><strong>03 · Acknowledge</strong><br><br><a href="docs/screenshots/portfolio/04-acknowledge.jpg"><img src="docs/screenshots/portfolio/04-acknowledge.jpg" width="240" alt="Explicit acknowledgment of a submitted handoff version"></a><br><sub>Confirm the information actually reviewed.</sub></td>
+  </tr>
+  <tr>
+    <td width="33%" valign="top" align="center"><strong>04 · Compare</strong><br><br><a href="docs/screenshots/portfolio/05-update.jpg"><img src="docs/screenshots/portfolio/05-update.jpg" width="240" alt="The exact patient-note difference in a later handoff version"></a><br><sub>Read the change without replacing the earlier record.</sub></td>
+    <td width="33%" valign="top" align="center"><strong>05 · Follow through</strong><br><br><a href="docs/screenshots/portfolio/06-work.jpg"><img src="docs/screenshots/portfolio/06-work.jpg" width="240" alt="Incoming colleague entering a factual completion result"></a><br><sub>Record what was done, who did it and when.</sub></td>
+    <td width="33%" valign="top" align="center"><strong>06 · Keep the history</strong><br><br><a href="docs/screenshots/portfolio/07-history.jpg"><img src="docs/screenshots/portfolio/07-history.jpg" width="240" alt="Work history with author, time and source version"></a><br><sub>Append a correction while retaining the first entry.</sub></td>
+  </tr>
+</table>
 
 ## On-device AI: find the change, keep the source
 
@@ -49,39 +74,56 @@ First use needs a connection. Later reuse depends on retained browser caches and
 
 [Open the local-search sample](https://robertvaganian.github.io/somnashift/shift/?scene=assist&screen=detail&brief=1&briefmode=local) · [Read the AI case-study section](https://robertvaganian.github.io/somnashift/case-study#on-device-ai)
 
-## Designed for the working screen
+## Notifications with somewhere to go
 
-Porcelain, warm ink and copper keep the main interface quiet. Twilight and Amber offer two darker appearances. Source Sans 3 carries working text; Newsreader is reserved for editorial headings. Both fonts are self-hosted.
+The bell in the upper-right corner shows the selected colleague’s unread count. Delivered handoffs, replies and questions lead back to their exact source. The outgoing colleague can also see when a version was opened or acknowledged and when follow-up work was recorded.
 
-The phone layout keeps navigation and the version-specific action within reach. Patient notes use 16 px text, with a 19 px larger-text setting. Dialogs have one scrolling body, consistent owner menus and visible close controls. Motion gives short press and transition feedback, while reduced motion removes movement without delaying the action.
+- **Unread and All:** catch up now, then revisit earlier items.
+- **Read or unread:** triage one notification or mark the current inbox read together.
+- **A direct source:** open the submitted version, patient or clarification thread.
+- **Separate meanings:** reading a notification never acknowledges a handoff. A later arrival becomes unread even after the inbox was cleared.
+
+Read state is saved per demo colleague in the current browser. Sample scenes stay isolated from the saved workspace. This is an in-app inbox driven by fictional local events, without push delivery, background reminders or clinical alarms.
+
+[Explore the sample inbox →](https://robertvaganian.github.io/somnashift/shift/?scene=notifications)
 
 <table>
   <tr>
-    <td align="center"><img src="docs/screenshots/portfolio/01-prepare.jpg" width="240" alt="Outgoing shift with patient notes and outstanding actions"></td>
-    <td align="center"><img src="docs/screenshots/portfolio/05-update.jpg" width="240" alt="Exact patient-note difference between submitted versions"></td>
-    <td align="center"><img src="docs/screenshots/portfolio/06-work.jpg" width="240" alt="Incoming colleague recording a factual follow-up result"></td>
+    <td width="50%" align="center" valign="top"><strong>Notice the arrival</strong><br><br><a href="docs/screenshots/notifications/launcher-mobile.jpg"><img src="docs/screenshots/notifications/launcher-mobile.jpg" width="280" alt="The workspace bell with two unread notifications"></a></td>
+    <td width="50%" align="center" valign="top"><strong>Return to its source</strong><br><br><a href="docs/screenshots/notifications/inbox-mobile.jpg"><img src="docs/screenshots/notifications/inbox-mobile.jpg" width="280" alt="Unread handoff delivery and clarification reply in the inbox"></a></td>
   </tr>
-  <tr><td align="center">Prepare</td><td align="center">Review the change</td><td align="center">Follow through</td></tr>
 </table>
 
-Three decisions hold the flow together:
+## From phone to desktop
 
-- **Review belongs to a version.** An update asks for a fresh review; it does not silently carry the earlier confirmation forward.
-- **Work belongs to a person.** Follow-ups have an owner and expected time. Completion records retain their author, time and source version; a correction appends a reopening reason.
-- **Recovery preserves intent.** Restored text stays unsent. Send and acknowledgment confirmations are never restored as completed.
+The phone layout keeps navigation and the version-specific action within reach. Patient notes use **16 px** text, with a **19 px** larger-text setting. Native dialog sheets keep one scrolling body and visible close controls. On wide screens, the patient list and note sit side by side; notifications open beside the workspace.
 
-[Interface decisions](docs/design-system.md) · [Reading and controls](docs/readability-review.md)
+Porcelain, warm ink and copper define Daylight. Twilight uses warm graphite and clay; Amber offers a warmer dark appearance. **Source Sans 3** carries working text; **Newsreader** is reserved for editorial headings. Both fonts are self-hosted. Reduced motion removes movement without delaying the underlying action.
 
-## Explore the prototype
+## Design decisions
 
-| Start here | What to try |
-| --- | --- |
-| [Outgoing handoff](https://robertvaganian.github.io/somnashift/shift/?scene=draft) | Assign room 414’s missing owner, choose Jordan, then send and simulate delivery. |
-| [Updated handoff](https://robertvaganian.github.io/somnashift/shift/?scene=update&screen=detail) | Inspect v2 and see why the earlier review still belongs to v1. |
-| [Incoming work](https://robertvaganian.github.io/somnashift/now/?scene=work) | Find the next assigned action, record a result and inspect its history. |
-| [Case study](https://robertvaganian.github.io/somnashift/case-study) | Explore the decisions, live phone views and captioned 35-second screen walkthrough. |
+**Review belongs to a version.** Sent, delivered, viewed and acknowledged are separate events. An update does not silently inherit the earlier confirmation.
 
-Sample scenes use fictional records and leave the saved local workspace untouched. Demo settings includes role switching, larger text, reduced motion, offline simulation and reset. The public demo runs on GitHub Pages; the complete app also runs locally.
+**Work belongs to a person.** Follow-ups have an owner and expected time. A completion stores a factual result in a separate history; a correction appends a reopening reason. The submitted snapshot remains unchanged.
+
+**Interruptions preserve intent.** The browser recovers the patient, reading position and unsent input. Recovered text stays unsent; send and review confirmations are never restored as completed.
+
+**Attention needs a destination.** An unread badge identifies new information, then gets out of the way once it has been read. Each notification points to the relevant record; it does not act as an alarm or confirmation.
+
+[Interface decisions](docs/design-system.md) · [Reading and controls](docs/readability-review.md) · [Notification behavior](docs/notifications.md)
+
+## Try a handoff
+
+1. **Prepare as Alex.** Assign room 414’s missing owner and choose Jordan as recipient.
+2. **Send and deliver v1.** Switch to Jordan, then open the delivered version.
+3. **Ask for clarification.** Ask about a patient note, switch to Alex and open the question from the bell. Reply from the conversation.
+4. **Review as Jordan.** Open the reply and explicitly acknowledge v1.
+5. **Pass on an update.** As Alex, add a factual room-419 note and send and deliver v2. Jordan’s inbox points to the new version; its acknowledgment is still a separate step.
+6. **Follow through.** Use the incoming-work scenario to record a result and inspect its history.
+
+[Updated handoff](https://robertvaganian.github.io/somnashift/shift/?scene=update&screen=detail) · [Incoming work](https://robertvaganian.github.io/somnashift/now/?scene=work) · [Sample inbox](https://robertvaganian.github.io/somnashift/shift/?scene=notifications)
+
+Sample scenes use fictional records and leave the saved local workspace untouched. Demo settings includes role switching, larger text, reduced motion, offline simulation and reset. The public demo runs on GitHub Pages.
 
 ## Run locally
 
@@ -98,16 +140,24 @@ npm run check
 npm run build
 ```
 
-`check` validates JavaScript syntax and runs **87 automated checks**. `build` creates static route entries. The editable app lives in `dist/`; it is not a minified bundle. [GitHub Pages setup →](docs/publishing.md)
+`check` validates JavaScript syntax and runs **98 automated checks**. `build` creates static route entries. The editable app lives in `dist/`; it is not a minified bundle. [GitHub Pages setup →](docs/publishing.md)
+
+<details>
+<summary><strong>Implementation and project structure</strong></summary>
 
 | Source | Responsibility |
 | --- | --- |
+| `dist/notifications.mjs` | Colleague-specific event inbox and restored read-state validation |
 | `dist/model.mjs` | Fictional records, immutable versions and pure state transitions |
 | `dist/app.mjs` | Screens, forms, navigation and browser storage |
 | `dist/handoff-view.mjs`, `dist/now-view.mjs` | Patient summaries, action filters and expected-time groups |
 | `dist/workspace-view.mjs`, `dist/motion.mjs` | Input recovery, persistent DOM updates, dialog focus and scroll handling |
 | `dist/change-brief.mjs`, `dist/brief-view.mjs` | Version comparisons and source-linked search results |
 | `dist/brief-worker.mjs`, `dist/brief-runtime.mjs` | Local inference, explicit loading, cancellation and memory/cache controls |
+
+The core app uses HTML, CSS and JavaScript modules with no installed runtime packages. Optional local AI downloads its pinned browser runtime and model after opt-in. The README mark uses the existing two-path identity; regenerate its GIF with `python scripts/make-readme-mark.py` when Pillow is available. A still image is provided for reduced-motion preferences.
+
+</details>
 
 ## Verification and scope
 

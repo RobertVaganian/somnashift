@@ -1,3 +1,4 @@
+import {notificationItems,restoreNotificationReads} from './notifications.mjs';
 /** @typedef {'alex'|'jordan'|'taylor'} ActorId */
 /** @typedef {{id:string, label:string, owner:ActorId|null, due:string, done:boolean}} Task */
 /** @typedef {{id:string, room:string, name:string, initials:string, context:string, recordedAt:string, older:boolean, sbar:Record<string,string>, tasks:Task[], notes:Array<{text:string,time:string,actor:ActorId}>}} Patient */
@@ -28,7 +29,7 @@ export function seedPatients() {
 }
 export function initialState() {
   return {schema:SCHEMA,actor:'alex',offline:false,tick:0,draft:{patients:seedPatients(),recipient:null,recipientConfirmed:false,baseId:null,verification:null,conflict:null},
-    versions:[],transport:{},acknowledgments:[],questions:[],workEvents:[],events:[{id:'e0',kind:'draft',actor:'alex',time:'06:42',versionId:null,text:'Night-shift handoff started'}]};
+    versions:[],transport:{},acknowledgments:[],questions:[],workEvents:[],notificationReads:{alex:[],jordan:[],taylor:[]},events:[{id:'e0',kind:'draft',actor:'alex',time:'06:42',versionId:null,text:'Night-shift handoff started'}]};
 }
 export const demoTime = state => {const minutes=6*60+42+state.tick;return `${String(Math.floor(minutes/60)).padStart(2,'0')}:${String(minutes%60).padStart(2,'0')}`;};
 const requireThat = (condition,message) => {if(!condition)throw new Error(message);};
@@ -108,6 +109,7 @@ export function workPermission(state,versionId,patientId,taskId) {
 export function transition(previous,action) {
   const state=clone(previous);
   switch(action.type) {
+    case 'NOTIFICATION_READ':{const allowed=new Set(notificationItems(state).map(item=>item.id));requireThat(typeof action.read==='boolean'&&Array.isArray(action.ids)&&action.ids.every(id=>typeof id==='string'&&allowed.has(id)),'Choose notifications for the current colleague.');state.notificationReads=restoreNotificationReads(state,state.notificationReads);const old=state.notificationReads[state.actor];state.notificationReads[state.actor]=action.read?[...new Set([...old,...action.ids])]:old.filter(id=>!action.ids.includes(id));break;}
     case 'ADVANCE_TIME':{requireThat(Number.isInteger(action.minutes)&&action.minutes>0&&action.minutes<=180,'Advance the demo clock by 1–180 minutes.');requireThat(6*60+42+state.tick+action.minutes<=19*60,'The demo clock stops at 19:00. Reset the scenario to start again.');state.tick+=action.minutes-1;event(state,'clock',`Demo time advanced to ${demoTime({...state,tick:state.tick+1})}`);break;}
     case 'RECORD_WORK':{const reason=workPermission(state,action.versionId,action.patientId,action.taskId);requireThat(!reason,reason);requireThat(['completed','reopened'].includes(action.status),'Choose a valid work status.');const previousWork=workFor(state,action.versionId,action.patientId,action.taskId);requireThat(action.status==='completed'?previousWork?.status!=='completed':previousWork?.status==='completed',action.status==='completed'?'This action is already recorded complete.':'There is no completion to correct.');requireThat(typeof action.note==='string'&&action.note.trim()&&action.note.trim().length<=500,'Write a factual note of 1–500 characters.');const v=versionById(state,action.versionId);const p=v.patients.find(p=>p.id===action.patientId);const task=p.tasks.find(t=>t.id===action.taskId);state.workEvents.push({id:`w${state.workEvents.length+1}`,versionId:v.id,patientId:p.id,taskId:task.id,fingerprint:taskFingerprint(task),actor:state.actor,time:demoTime({...state,tick:state.tick+1}),status:action.status,note:action.note.trim(),offline:state.offline});event(state,action.status==='completed'?'work-completed':'work-reopened',`${ACTORS[state.actor].short} ${action.status==='completed'?'recorded completion':'reopened an action'} for room ${p.room}`,v.id);break;}
     case 'ROLE':requireThat(ACTORS[action.actor],'Unknown demo colleague.');state.actor=action.actor;break;
@@ -156,6 +158,7 @@ export function restoreState(raw) {
       if(w.status==='completed'&&prev?.status==='completed'||w.status==='reopened'&&prev?.status!=='completed')return null;
       prefix.push(w);
     }
+    s.notificationReads=restoreNotificationReads(s,s.notificationReads);
     return s;
   } catch {return null;}
 }
@@ -168,6 +171,14 @@ export function sceneState(scene='draft') {
   if(scene==='sent')return s;
   s=transition(s,{type:'DELIVER',versionId:'handoff-v1'});s=transition(s,{type:'ROLE',actor:'jordan'});s=transition(s,{type:'VIEW',versionId:'handoff-v1'});
   if(scene==='incoming')return s;
+  if(scene==='notifications'){
+    s=transition(s,{type:'ASK',versionId:'handoff-v1',patientId:'p412',text:'Can you confirm the expected follow-up time?'});
+    s=transition(s,{type:'ROLE',actor:'alex'});
+    s=transition(s,{type:'REPLY',questionId:'q1',text:'Yes — the planned follow-up is at 08:15. The action keeps its named owner.'});
+    s=transition(s,{type:'ROLE',actor:'jordan'});
+    const delivery=notificationItems(s).find(item=>item.kind==='delivered');
+    s=transition(s,{type:'NOTIFICATION_READ',ids:[delivery.id],read:true});
+  }
   s=transition(s,{type:'ACK',versionId:'handoff-v1'});
   if(scene==='acknowledged')return s;
   if(scene==='work')return transition(s,{type:'ADVANCE_TIME',minutes:104});
@@ -178,5 +189,6 @@ export function sceneState(scene='draft') {
   }
   s=transition(s,{type:'ADD_NOTE',patientId:'p419',text:'The day team requested a factual update at 07:30. The earlier note is retained in v1.'});
   s=transition(s,{type:'SEND'});s=transition(s,{type:'DELIVER',versionId:'handoff-v2'});s=transition(s,{type:'ROLE',actor:'jordan'});
+  if(scene==='notifications')return s;
   s=transition(s,{type:'VIEW',versionId:'handoff-v2'});return s;
 }

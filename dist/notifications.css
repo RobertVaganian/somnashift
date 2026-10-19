@@ -1,0 +1,60 @@
+:root{--inbox-unread:#b53b3d}:root[data-theme=twilight],:root[data-theme=amber]{--inbox-unread:#ed9991}
+/* The inbox uses the same reading surfaces as the handoff. Red means unread, not urgent. */
+.notification-button{position:relative;flex-shrink:0;width:44px;height:44px;color:var(--muted)}
+.notification-button:hover{color:var(--ink);background:var(--subtle)}
+.notification-count{position:absolute;top:1px;right:0;display:grid;place-items:center;min-width:20px;height:20px;padding:0 4px;border:2px solid var(--bg);border-radius:20px;background:#b53b3d;color:#ffffff;font-size:11px;line-height:1;font-weight:700;font-variant-numeric:tabular-nums;pointer-events:none}
+.mobile-tools{display:flex;align-items:center;gap:2px;margin-left:0}
+.mobile-tools>.icon-button{width:44px;height:44px;flex-shrink:0}
+.modal.notifications-dialog{position:fixed;inset:16px 24px auto auto;margin:0;width:450px;max-width:calc(100vw - 32px);max-height:calc(100dvh - 32px)}
+.notifications-dialog .dialog-body{padding:20px 24px 22px;overscroll-behavior:contain}
+.notifications-dialog .dialog-head{padding-bottom:20px}
+.inbox-intro{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;padding:0 0 20px}
+.inbox-intro>div{min-width:0}.inbox-intro strong{display:block;font-size:16px;font-weight:600}
+.inbox-intro>div>span{display:block;font-size:13px;color:var(--muted);margin-top:3px}
+.inbox-intro>.button{flex-shrink:0;font-size:13px;min-height:44px;padding:0 0 0 8px;text-align:right}
+.inbox-filters{display:flex;align-items:center;gap:4px;border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:4px}
+.inbox-filters button{font-size:14px;font-weight:600;color:var(--muted);border-radius:7px;min-height:44px;padding:8px 14px}
+.inbox-filters button[aria-pressed=true]{background:var(--accent-soft);color:var(--accent)}
+.inbox-list{list-style:none;margin:0;padding:0;display:grid;gap:2px}
+.inbox-item{position:relative;padding:4px 0 12px;border-bottom:1px solid var(--line)}
+.inbox-open{display:flex;align-items:flex-start;gap:12px;width:100%;text-align:left;padding:16px 5px 5px;border-radius:8px;min-height:64px}
+.inbox-open:hover{background:var(--subtle)}
+.inbox-symbol{display:grid;place-items:center;flex-shrink:0;width:34px;height:34px;background:var(--subtle);border:1px solid var(--line);border-radius:9px;color:var(--muted)}
+.inbox-copy{display:block;min-width:0;flex:1}
+.inbox-meta{display:flex;gap:6px;align-items:center;justify-content:space-between;color:var(--muted);font-size:12px;line-height:1.4}
+.inbox-meta time{flex-shrink:0;font-variant-numeric:tabular-nums}
+.inbox-copy>strong{display:block;font-size:16px;line-height:1.4;letter-spacing:-.015em;font-weight:600;margin-top:5px;color:var(--ink)}
+.inbox-detail{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;font-size:14px;line-height:1.6;color:var(--muted);margin-top:7px;overflow-wrap:anywhere}
+.inbox-target{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:var(--accent);margin-top:11px;min-height:26px}
+.inbox-unread-dot{position:absolute;top:35px;left:-9px;width:7px;height:7px;border-radius:50%;background:var(--inbox-unread);pointer-events:none}
+.inbox-item.is-unread .inbox-symbol{color:var(--accent);background:var(--accent-soft);border-color:transparent}
+.inbox-read-toggle{display:flex;align-items:center;gap:5px;margin-left:51px;padding:8px 0;min-height:44px;color:var(--muted);font-size:13px}
+.inbox-read-toggle:hover{color:var(--ink)}
+.inbox-local-note{display:block;font-size:12px;line-height:1.5;color:var(--muted);margin-top:8px}
+.inbox-footnote{font-size:12px;color:var(--muted);line-height:1.7;padding-top:20px;margin:0}
+.inbox-empty{text-align:center;display:flex;flex-direction:column;align-items:center;padding:35px 8px 28px;color:var(--muted)}
+.inbox-empty>svg{margin-bottom:17px;color:var(--accent)}.inbox-empty h3{font-size:20px;line-height:1.3;color:var(--ink);margin-bottom:10px}
+.inbox-empty p{font-size:16px;line-height:1.65;max-width:300px;margin-bottom:19px}.inbox-empty .button{min-height:44px}
+.case-notifications{display:grid;grid-template-columns:minmax(0,1fr) minmax(300px,.85fr);gap:80px;align-items:center;padding-block:95px;border-top:1px solid var(--line)}
+.case-notifications h2{font-family:var(--display);font-size:clamp(32px,3.7vw,49px);line-height:1.12;letter-spacing:-.035em;margin:22px 0 26px}
+.case-notifications-copy>p:not(.eyebrow){font-size:16px;line-height:1.85;color:var(--muted);max-width:505px;margin-bottom:20px}
+.case-notifications-copy>.button{margin-top:10px}.case-notifications-copy>small{display:block;font-size:12px;line-height:1.7;color:var(--muted);margin-top:17px}
+.case-inbox-phone{display:flex;flex-direction:column;align-items:center;min-width:0}.case-inbox-phone>.phone{transform:none;margin:0;flex-shrink:0}
+.case-inbox-phone>.case-media-caption{max-width:310px;margin-top:24px;text-align:center;font-size:14px;line-height:1.7}
+@media(max-width:900px){
+ .modal.notifications-dialog{inset:auto 12px max(12px,env(safe-area-inset-bottom)) 12px;margin:0 auto;width:calc(100% - 24px);max-width:576px;max-height:calc(86dvh - env(safe-area-inset-bottom))}
+ .notifications-dialog .dialog-head{padding:20px 20px 17px}.notifications-dialog .dialog-body{padding:18px 20px 18px}
+ .notifications-dialog .dialog-footer{padding:14px 20px}.notifications-dialog .inbox-intro{padding-bottom:15px}
+ .case-notifications{grid-template-columns:1fr;gap:40px;padding-block:60px}.case-notifications-copy>p:not(.eyebrow){max-width:none}
+ .case-notifications h2{font-size:36px}.case-inbox-phone>.phone{zoom:.9}.case-inbox-phone>.case-media-caption{max-width:320px}
+}
+@media(max-width:360px){.mobile-brand>.mobile-demo{display:none}.mobile-tools{margin-left:auto}.notifications-dialog .dialog-head{padding-inline:17px}.notifications-dialog .dialog-body{padding-inline:17px}.inbox-intro{gap:8px}.inbox-intro>.button{font-size:12px}.inbox-open{gap:9px}.inbox-symbol{width:30px;height:30px}.inbox-meta{font-size:12px}.inbox-copy>strong{font-size:16px}.inbox-read-toggle{margin-left:44px}.case-notifications h2{font-size:32px}.case-inbox-phone>.phone{zoom:.8}}
+@media(prefers-reduced-motion:reduce){.notification-button,.inbox-open,.inbox-read-toggle{transition:none}}
+
+.notifications-dialog .icon-button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.notifications-dialog .dialog-body>p.inbox-footnote{font-size:14px;line-height:1.65}
+
+:root[data-large=true] .inbox-copy>strong{font-size:19px}
+:root[data-large=true] .inbox-detail{font-size:17px;line-height:1.7}
+:root[data-large=true] .inbox-meta,:root[data-large=true] .inbox-read-toggle{font-size:14px}
+:root[data-large=true] .inbox-empty p{font-size:19px}

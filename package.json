@@ -1,13 +1,13 @@
 {
   "name": "somnashift",
-  "version": "0.7.1",
+  "version": "0.8.0",
   "private": true,
   "type": "module",
   "scripts": {
     "dev": "node scripts/serve.mjs",
     "test": "node --test tests/*.test.mjs",
     "build": "node scripts/build.mjs",
-    "check": "node --check dist/change-brief.mjs && node --check dist/brief-view.mjs && node --check dist/brief-worker.mjs && node --check dist/brief-runtime.mjs && node --check dist/owner-picker.mjs && node --check dist/motion.mjs && node --check dist/app.mjs && node --check dist/model.mjs && node --check dist/handoff-view.mjs && node --check dist/now-view.mjs && node --check dist/workspace-view.mjs && node --test tests/*.test.mjs"
+    "check": "node --check dist/notifications.mjs && node --check dist/change-brief.mjs && node --check dist/brief-view.mjs && node --check dist/brief-worker.mjs && node --check dist/brief-runtime.mjs && node --check dist/owner-picker.mjs && node --check dist/motion.mjs && node --check dist/app.mjs && node --check dist/model.mjs && node --check dist/handoff-view.mjs && node --check dist/now-view.mjs && node --check dist/workspace-view.mjs && node --test tests/*.test.mjs"
   },
   "engines": {
     "node": ">=22"

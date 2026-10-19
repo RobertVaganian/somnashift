@@ -10,6 +10,7 @@ The images show fictional records in the implemented browser prototype. Device f
 | `brief/local-desktop.jpg`, `brief/local-mobile.jpg` | Results from the real local semantic model |
 | `brief/case-ai.jpg` | The dedicated on-device AI case-study section |
 | `access/` | Visible AI entry and the responsive case-study hero |
+| `notifications/` | The workspace bell and the colleague-specific inbox at 390 px |
 | `fields/` | Shared owner menu and phone presentation |
 | `readability/` | Reading-scale and alignment comparisons |
 | `case-composition.jpg`, `case-now.jpg` | Case-study phone compositions |

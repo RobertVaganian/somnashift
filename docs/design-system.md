@@ -79,3 +79,11 @@ The AI entry stays visible in the workspace, above navigation and the handoff ac
 Local search puts the matching source first: room, changed field, original value, new value and the two version numbers. It ranks recorded differences without generating new wording. A direct source link returns to the selected submitted patient note. The guided demonstration is labelled separately, so an immediate prepared example is not mistaken for model inference.
 
 Download size, progress, cancellation and removal sit with the local-search controls. Empty results and loading failures remain visible, with no automatic switch to a remote service. See [the local-search implementation](on-device-search.md).
+
+## Notifications and attention
+
+The workspace bell belongs to the currently selected colleague. Its red count indicates unread events, not clinical severity. Phone controls share a 44 px target; the unread count stays attached to the bell.
+
+The inbox opens as a side panel on desktop and a native sheet on a phone. Its list uses the established paper surfaces, fine separators and source metadata. Unread and All filters separate catching up from returning to earlier information. Opening a notification marks that item read and returns to its submitted version or conversation. Marking one or all items read is a local preference; it never acknowledges a handoff.
+
+A new delivery remains unread even after earlier notifications were cleared. Empty, all-read and offline-opening states explain what can happen next. See [notification behavior](notifications.md).

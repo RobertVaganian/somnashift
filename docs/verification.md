@@ -2,7 +2,7 @@
 
 ## Automated checks
 
-`npm run check` validates the application modules and runs 87 checks covering:
+`npm run check` validates the application modules and runs 98 checks covering:
 
 - Handoff state: required owners and recipients, transport boundaries, immutable submitted snapshots, clarifications, role restrictions, stale and duplicate acknowledgment rejection.
 - Work records: completion and append-only corrections, owner/version restrictions, compatibility across unchanged tasks, malformed history and local persistence.
@@ -42,6 +42,12 @@ The real quantized model was exercised in Chromium. Owner, deadline and added-no
 The brief fit at 320, 390 and 430 px across the three appearances. The first-draft AI entry offered a separate sample tab without replacing the draft. The sample opened in local mode, with loading still awaiting an explicit action. Escape returned focus to the launcher. Its offset updated when the handoff bar wrapped at a narrower width.
 
 [Model, queries, controls and limits →](on-device-search.md)
+
+## Notification inbox
+
+Eleven domain checks cover recipient-specific delivery, questions and replies, read-state recovery, old-version targets, later arrivals after marking all read, malformed inbox preferences and work-completion events. Reading notifications leaves submitted snapshots, transport records, questions and acknowledgments unchanged.
+
+Browser checks inspected the inbox at 320, 375, 390, 430, 768 and 1024 px. The mobile header, unread badge and drawer fit without horizontal overflow. At 320 px, larger text retained 19 px item headings and 17 px detail text. Escape returned focus to the bell. Offline source opening stayed blocked and unread, while local Mark all read remained available. Mark all read retained the three records under All and left v2 unacknowledged. Opening a reply returned to room 412’s conversation in v1.
 
 ## Published deployment
 
