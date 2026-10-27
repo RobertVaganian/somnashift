@@ -4,7 +4,7 @@ from PIL import Image, ImageDraw
 import math
 
 ROOT = Path(__file__).resolve().parents[1]
-SIZE, SCALE = 128, 4
+SIZE, SCALE = 128, 8
 PAPER, COPPER, QUIET = '#f6f1eb', '#854e40', '#d3bdb2'
 
 
@@ -41,9 +41,11 @@ def stroke(draw, points, progress, color):
     coords = [(x * unit, y * unit) for x, y in result]
     width = round(2.6 * unit)
     if len(coords) > 1:
-        draw.line(coords, fill=color, width=width, joint='curve')
+        # Overlapping round segments keep the inside of each bend continuous.
+        # Pillow's curved polyline joins can leave gaps on closely spaced points.
+        draw.line(coords, fill=color, width=width)
         radius = width / 2
-        for x, y in (coords[0], coords[-1]):
+        for x, y in coords:
             draw.ellipse((x-radius, y-radius, x+radius, y+radius), fill=color)
 
 
@@ -74,12 +76,23 @@ if __name__ == '__main__':
     destination.mkdir(parents=True,exist_ok=True)
     frames = [frame(i/95) for i in range(96)]
     frames[0].save(destination/'mark-still.png')
-    palette = frames[0].convert('RGB').quantize(colors=255)
+    # Include the fading colors, not only the complete mark, in the shared palette.
+    samples = frames[::4]
+    swatches = Image.new('RGB', (SIZE, SIZE*len(samples)), PAPER)
+    for i, sample in enumerate(samples):
+        swatches.paste(sample.convert('RGB'), (0, i*SIZE))
+    palette = swatches.quantize(colors=255)
+    colors = palette.getpalette()
+    colors[765:768] = colors[:3]
+    palette.putpalette(colors)
     indexed = []
     for image in frames:
         rgb = Image.new('RGB',image.size,PAPER)
         rgb.paste(image,mask=image.getchannel('A'))
         converted = rgb.quantize(palette=palette,dither=Image.Dither.NONE)
+        # Index 255 is exclusively for transparent corners. Its opaque duplicate
+        # is index 0, so quantization cannot punch holes through the mark.
+        converted = converted.point(lambda index: 0 if index == 255 else index)
         converted.paste(255,mask=image.getchannel('A').point(lambda a:255 if a<128 else 0))
         converted.info['transparency'] = 255
         indexed.append(converted)

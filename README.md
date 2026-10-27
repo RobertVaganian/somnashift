@@ -1,8 +1,8 @@
 <div align="center">
 
   <picture>
-    <source media="(prefers-reduced-motion: reduce)" srcset="docs/media/mark-still.png">
-    <img src="docs/media/mark-animated.gif" alt="SomnaShift — two paths passing a shift forward" width="88" height="88">
+    <source media="(prefers-reduced-motion: reduce)" srcset="docs/media/mark-still.png?v=2">
+    <img src="docs/media/mark-animated.gif?v=2" alt="SomnaShift — two paths passing a shift forward" width="88" height="88">
   </picture>
 
   # SomnaShift
@@ -55,35 +55,28 @@ Six moments from the working mobile prototype. Select a screen to inspect it at 
 
 **Ask about a change in plain English. Get the original record beside it.**
 
-“Who took over the family update?” finds room 414’s owner change. “Which deadline moved?” finds the expected-time change. The application calculates the differences; a small local semantic model ranks the relevant records. Names, times and before-and-after values come directly from the submitted snapshots.
+“Who took over the family update?” finds room 414’s owner change. “Which deadline moved?” finds the expected-time change. The app calculates the differences; a small semantic model ranks them. Names, times and before-and-after values come from the submitted snapshots.
 
-![Real local semantic search with the source versions attached](docs/screenshots/brief/local-desktop.jpg)
+![Local search with the source versions attached](docs/screenshots/brief/local-desktop.jpg)
 
-The visible **AI · Ask about changes** button opens search from the workspace. If there is no readable version pair yet, it offers a separate sample tab and preserves the current draft.
+The **AI · Ask about changes** button opens search in the workspace. Two modes make it possible to try:
 
 | Mode | What runs |
 | --- | --- |
-| Guided demo | Clearly labelled, prepared matches. Opens immediately; no model runs. |
-| On-device AI | Real semantic search with quantized **all-MiniLM-L6-v2**, inside a Web Worker. An explicit **Load model & search** action starts it. |
+| Guided demo | Prepared matches, clearly labelled. Opens immediately without a model. |
+| On-device AI | Real semantic search with quantized **all-MiniLM-L6-v2**, running in a Web Worker after **Load model & search**. |
 
-**No API key, inference server or paid inference account.** Model weights are about **23 MB**; the first download including runtime assets is approximately **50 MB**. Files are fetched from Hugging Face and jsDelivr after opt-in. Questions and source records are processed on the device.
+**No API key or paid inference account.** The first download is approximately **50 MB**, including **23 MB** of model weights. Questions and records are processed on the device. Search can be stopped, retried or unloaded; its model cache can be removed.
 
-Search supports stop, retry, unload and model-cache removal. Source links open the exact submitted patient version. A question without a close match returns no answer. The model does not generate clinical advice, edit records or acknowledge a handoff.
+Results link to the exact patient version. A question without a close match returns no answer. The model does not write clinical advice or alter records. First use needs a connection; later reuse depends on browser caches.
 
-First use needs a connection. Later reuse depends on retained browser caches and device resources; full offline availability is not guaranteed. [Implementation, scope and checked queries →](docs/on-device-search.md)
-
-[Open the local-search sample](https://robertvaganian.github.io/somnashift/shift/?scene=assist&screen=detail&brief=1&briefmode=local) · [Read the AI case-study section](https://robertvaganian.github.io/somnashift/case-study#on-device-ai)
+[Try local search →](https://robertvaganian.github.io/somnashift/shift/?scene=assist&screen=detail&brief=1&briefmode=local) · [How it works](docs/on-device-search.md)
 
 ## Notifications with somewhere to go
 
-The bell in the upper-right corner shows the selected colleague’s unread count. Delivered handoffs, replies and questions lead back to their exact source. The outgoing colleague can also see when a version was opened or acknowledged and when follow-up work was recorded.
+The header bell shows the selected colleague’s unread count. Deliveries, questions, replies and review events lead back to their version, patient or conversation. **Unread / All** and individual read controls help clear the inbox; read state stays separate for each demo colleague.
 
-- **Unread and All:** catch up now, then revisit earlier items.
-- **Read or unread:** triage one notification or mark the current inbox read together.
-- **A direct source:** open the submitted version, patient or clarification thread.
-- **Separate meanings:** reading a notification never acknowledges a handoff. A later arrival becomes unread even after the inbox was cleared.
-
-Read state is saved per demo colleague in the current browser. Sample scenes stay isolated from the saved workspace. This is an in-app inbox driven by fictional local events, without push delivery, background reminders or clinical alarms.
+Reading a notification never acknowledges a handoff. The inbox uses fictional local events, with no push delivery or background alarms.
 
 [Explore the sample inbox →](https://robertvaganian.github.io/somnashift/shift/?scene=notifications)
 
@@ -96,75 +89,47 @@ Read state is saved per demo colleague in the current browser. Sample scenes sta
 
 ## From phone to desktop
 
-The phone layout keeps navigation and the version-specific action within reach. Patient notes use **16 px** text, with a **19 px** larger-text setting. Native dialog sheets keep one scrolling body and visible close controls. On wide screens, the patient list and note sit side by side; notifications open beside the workspace.
+Patient notes use **16 px** text, with a **19 px** larger-text option. On phones, navigation and the version-specific action stay within reach. Desktop puts the patient list beside the note. Dialogs keep one scrolling body and visible close controls.
 
-Porcelain, warm ink and copper define Daylight. Twilight uses warm graphite and clay; Amber offers a warmer dark appearance. **Source Sans 3** carries working text; **Newsreader** is reserved for editorial headings. Both fonts are self-hosted. Reduced motion removes movement without delaying the underlying action.
+Cream, warm ink and copper define Daylight; Twilight and Amber offer darker alternatives. Self-hosted **Source Sans 3** carries working text, with **Newsreader** for editorial headings. Reduced motion removes movement without delaying actions.
 
-## Design decisions
+## Why I designed it this way
 
-**Review belongs to a version.** Sent, delivered, viewed and acknowledged are separate events. An update does not silently inherit the earlier confirmation.
+I wanted the incoming colleague to know exactly what they had reviewed. Sent, delivered, viewed and acknowledged are separate events. If a note changes after acknowledgment, the earlier confirmation stays with its version. The new version needs a new review.
 
-**Work belongs to a person.** Follow-ups have an owner and expected time. A completion stores a factual result in a separate history; a correction appends a reopening reason. The submitted snapshot remains unchanged.
+The handoff also needs to lead somewhere. Follow-ups have an owner and expected time; completed work gets a factual result and its own history. Corrections append another entry, so the original handoff remains available alongside what happened afterward.
 
-**Interruptions preserve intent.** The browser recovers the patient, reading position and unsent input. Recovered text stays unsent; send and review confirmations are never restored as completed.
+Interruptions shaped the smaller decisions. The browser restores the patient, reading position and unsent input. Notifications return to a specific record. Local AI finds relevant changes and shows their source. Each helps the colleague pick up the work without silently sending, rewriting or confirming anything.
 
-**Attention needs a destination.** An unread badge identifies new information, then gets out of the way once it has been read. Each notification points to the relevant record; it does not act as an alarm or confirmation.
-
-[Interface decisions](docs/design-system.md) · [Reading and controls](docs/readability-review.md) · [Notification behavior](docs/notifications.md)
-
-## Try a handoff
-
-1. **Prepare as Alex.** Assign room 414’s missing owner and choose Jordan as recipient.
-2. **Send and deliver v1.** Switch to Jordan, then open the delivered version.
-3. **Ask for clarification.** Ask about a patient note, switch to Alex and open the question from the bell. Reply from the conversation.
-4. **Review as Jordan.** Open the reply and explicitly acknowledge v1.
-5. **Pass on an update.** As Alex, add a factual room-419 note and send and deliver v2. Jordan’s inbox points to the new version; its acknowledgment is still a separate step.
-6. **Follow through.** Use the incoming-work scenario to record a result and inspect its history.
-
-[Updated handoff](https://robertvaganian.github.io/somnashift/shift/?scene=update&screen=detail) · [Incoming work](https://robertvaganian.github.io/somnashift/now/?scene=work) · [Sample inbox](https://robertvaganian.github.io/somnashift/shift/?scene=notifications)
-
-Sample scenes use fictional records and leave the saved local workspace untouched. Demo settings includes role switching, larger text, reduced motion, offline simulation and reset. The public demo runs on GitHub Pages.
+[Design details](docs/design-system.md) · [Notification behavior](docs/notifications.md)
 
 ## Run locally
 
-Requires **Node.js 22 or newer**. The core app and guided demo need no dependency installation, account or API key.
+Requires **Node.js 22+**. The core app and guided demo need no dependency installation.
 
 ```sh
 npm run dev
 ```
 
-Open **http://localhost:5173**. To check or prepare a static deployment:
-
-```sh
-npm run check
-npm run build
-```
-
-`check` validates JavaScript syntax and runs **98 automated checks**. `build` creates static route entries. The editable app lives in `dist/`; it is not a minified bundle. [GitHub Pages setup →](docs/publishing.md)
+Open **http://localhost:5173**. `npm run check` validates syntax and runs **98 automated checks**; `npm run build` prepares the static routes. The editable source lives in `dist/`.
 
 <details>
-<summary><strong>Implementation and project structure</strong></summary>
+<summary><strong>Implementation</strong></summary>
 
-| Source | Responsibility |
-| --- | --- |
-| `dist/notifications.mjs` | Colleague-specific event inbox and restored read-state validation |
-| `dist/model.mjs` | Fictional records, immutable versions and pure state transitions |
-| `dist/app.mjs` | Screens, forms, navigation and browser storage |
-| `dist/handoff-view.mjs`, `dist/now-view.mjs` | Patient summaries, action filters and expected-time groups |
-| `dist/workspace-view.mjs`, `dist/motion.mjs` | Input recovery, persistent DOM updates, dialog focus and scroll handling |
-| `dist/change-brief.mjs`, `dist/brief-view.mjs` | Version comparisons and source-linked search results |
-| `dist/brief-worker.mjs`, `dist/brief-runtime.mjs` | Local inference, explicit loading, cancellation and memory/cache controls |
+HTML, CSS and JavaScript modules. `model.mjs` handles state transitions; `app.mjs` connects the screens and browser storage. Version comparisons and search live in the `change-brief`, `brief-worker` and `brief-runtime` modules. `notifications.mjs` derives the inbox from recorded events.
 
-The core app uses HTML, CSS and JavaScript modules with no installed runtime packages. Optional local AI downloads its pinned browser runtime and model after opt-in. The README mark uses the existing two-path identity; regenerate its GIF with `python scripts/make-readme-mark.py` when Pillow is available. A still image is provided for reduced-motion preferences.
+Optional AI downloads its pinned runtime and model after opt-in. See [local search](docs/on-device-search.md), [verification notes](docs/verification.md) and [publishing](docs/publishing.md).
+
+Regenerate the README animation with `python scripts/make-readme-mark.py` (Pillow required). A still image supports reduced-motion preferences.
 
 </details>
 
-## Verification and scope
+## Scope and credits
 
-The [product walkthrough](docs/portfolio-review.md) follows preparation, clarification, acknowledgment, updates and incoming work. [Verification notes](docs/verification.md) distinguish automated checks, browser observations and work still requiring evaluation. The [evaluation plan](docs/validation-plan.md) has not been run with participants.
+An independent portfolio prototype with fictional patients, staff and events. Roles and delivery are simulated; there is no hospital connection. Acknowledgment records review, not clinical responsibility. Data stays in the current browser and can be cleared. Sample scenarios leave the saved workspace untouched.
 
-This is an independent portfolio prototype. All patients, staff and events are fictional. Roles, delivery, the watch and voice drafting are simulations; there is no hospital connection or live microphone input. Acknowledgment confirms review of information, not clinical responsibility. Browser records are local and can be cleared.
+[Try an updated handoff](https://robertvaganian.github.io/somnashift/shift/?scene=update&screen=detail) · [Record incoming work](https://robertvaganian.github.io/somnashift/now/?scene=work)
 
-Physical iPhone/Safari, VoiceOver and use with nurses remain untested. No clinical outcomes or complete accessibility compliance are claimed.
+Physical iPhone/Safari, VoiceOver and use with nurses remain untested. The [evaluation plan](docs/validation-plan.md) has not been run with participants.
 
-Project use is covered by [LICENSE](LICENSE). Self-hosted fonts and optional runtime/model dependencies have separate licenses; see [third-party notices](THIRD_PARTY_NOTICES.md).
+[LICENSE](LICENSE) · [Font, runtime and model notices](THIRD_PARTY_NOTICES.md)
