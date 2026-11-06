@@ -2,11 +2,12 @@
 
 ## Automated checks
 
-`npm run check` validates the application modules and runs 98 checks covering:
+`npm run check` validates the application modules and runs 99 checks covering:
 
 - Handoff state: required owners and recipients, transport boundaries, immutable submitted snapshots, clarifications, role restrictions, stale and duplicate acknowledgment rejection.
 - Work records: completion and append-only corrections, owner/version restrictions, compatibility across unchanged tasks, malformed history and local persistence.
 - View data: patient search, action filtering, draft summaries, complete task-field differences, expected-time groups and scenario-clock bounds.
+- Display-name compatibility: generated event labels use the current colleague name while saved patient text is preserved.
 - Recovery and routing: unsent-input recovery, stale-dialog rejection, deterministic scenes, query preservation and deployment subpaths.
 - Search: readable version pairs, draft exclusion, source identifiers, escaping, stale results, explicit worker startup, cancellation, late-response rejection, failures and deadlines.
 - Contrast: 39 defined text/surface pairs across Daylight, Twilight and Amber.
@@ -39,7 +40,7 @@ The case-study hero was inspected at 320, 390, 430, 768 and desktop widths. Phon
 
 The real quantized model was exercised in Chromium. Owner, deadline and added-note questions ranked their expected source first. An owner-question paraphrase also found the expected change. An unrelated weather question produced no close match. Repeated searches reused the worker; model removal reported successful cache deletion. Opening a result selected the correct patient in v2 without acknowledging it.
 
-The brief fit at 320, 390 and 430 px across the three appearances. The first-draft AI entry offered a separate sample tab without replacing the draft. The sample opened in local mode, with loading still awaiting an explicit action. Escape returned focus to the launcher. Its offset updated when the handoff bar wrapped at a narrower width.
+The brief fit at 320, 390 and 430 px across the three appearances. The current layout shows one closest source first and keeps additional matches collapsed. A completed search moves focus to its result; reduced motion disables the entrance. The owner selector was rechecked at 320 px without horizontal overflow. The first-draft AI entry offered a separate sample tab without replacing the draft. The sample opened in local mode, with loading still awaiting an explicit action. Escape returned focus to the launcher. Its offset updated when the handoff bar wrapped at a narrower width.
 
 [Model, queries, controls and limits →](on-device-search.md)
 

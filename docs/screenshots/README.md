@@ -1,6 +1,6 @@
 # Product captures
 
-The images show fictional records in the implemented browser prototype. Device frames are CSS illustrations, not a claim of native iOS deployment. Captures are cropped for presentation; interface content is not repainted or redrawn.
+The images show fictional records in the implemented browser prototype. Device frames are CSS illustrations, not a claim of native iOS deployment. The portfolio phone captures use a 390 px app viewport and are saved at 848 × 1776 px. `scripts/capture-frame.html` contains the reusable frame layout. `node scripts/prepare-captures.mjs` prepares local capture pages under `/capture-preview/` for the development server; the build removes those pages. Browser captures use a 2× canvas, followed only by cropping of the surrounding canvas. Captures are cropped for presentation; interface content is not repainted or redrawn.
 
 | Folder or file | Content |
 | --- | --- |

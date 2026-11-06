@@ -21,7 +21,7 @@ export function notificationItems(state, actor = state.actor) {
       const question = state.questions.find(q => q.versionId === version.id && q.resolvedAt === event.time && q.actor === actor);
       if (!question) continue;
       const patient = version.patients.find(p => p.id === question.patientId);
-      Object.assign(item, {title:`Alex replied · room ${patient.room}`, detail:question.reply,
+      Object.assign(item, {title:`Robert replied · room ${patient.room}`, detail:question.reply,
         patientId:patient.id, questionId:question.id, action:'Open conversation'});
     } else if (['viewed', 'acknowledged'].includes(event.kind) && version.sender === actor && event.actor !== actor) {
       Object.assign(item, {title:event.kind === 'viewed' ? `Handoff v${version.number} was opened` : `Handoff v${version.number} was acknowledged`,

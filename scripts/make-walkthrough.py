@@ -32,12 +32,12 @@ for i,(name,title,body) in enumerate(steps):
  y+=38
  for line in wrap(d,body,font(sans,28),620):d.text((64,y),line,font=font(sans,28),fill='#70605a');y+=42
  d.text((64,842),'Robert Vaganian · Product design',font=font(bold,20),fill='#342c29');d.text((64,879),'Edited prototype captures · Fictional data',font=font(sans,18),fill='#70605a')
- screen=Image.open(shots/(name+'.jpg'));canvas.paste(screen,(800,32));canvas.save(work/f'slide-{i}.png');
+ screen=Image.open(shots/(name+'.jpg'));screen.thumbnail((424,888),Image.Resampling.LANCZOS);canvas.paste(screen,(800,32));canvas.save(work/f'slide-{i}.png');
  if i==0:canvas.save(media/'walkthrough-poster.jpg',quality=94)
 # A small ordered overview for the review notes; each individual capture remains available.
 contact=Image.new('RGB',(1360,1330),'#f6f1eb');d=ImageDraw.Draw(contact)
 for i,(name,title,body) in enumerate(steps):
- x=30+(i%4)*335;y=25+(i//4)*650;screen=Image.open(shots/(name+'.jpg'));screen.thumbnail((270,570));contact.paste(screen,(x,y+38));d.text((x+8,y),f'{i+1:02d} · {name.split("-",1)[1].title()}',font=font(bold,19),fill='#342c29')
+ x=30+(i%4)*335;y=25+(i//4)*650;screen=Image.open(shots/(name+'.jpg'));screen.thumbnail((270,570),Image.Resampling.LANCZOS);contact.paste(screen,(x,y+38));d.text((x+8,y),f'{i+1:02d} · {name.split("-",1)[1].title()}',font=font(bold,19),fill='#342c29')
 contact.save(shots/'flow-overview.jpg',quality=94)
 args=['ffmpeg','-y','-hide_banner','-loglevel','error']
 for i in range(7):args+=['-loop','1','-framerate','24','-t','5.3','-i',str(work/f'slide-{i}.png')]

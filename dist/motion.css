@@ -42,7 +42,7 @@ html[data-dialog-open=true] body{position:fixed;left:0;right:0;width:auto;overfl
  .patient-card:active:not(:disabled){background:var(--accent-soft)}
 }
 @media(max-width:900px){
- .modal.motion-dialog[open]{margin:auto auto calc(max(12px,env(safe-area-inset-bottom)) + var(--keyboard-inset,0px));max-height:calc(var(--usable-height,100dvh) - 24px);border-radius:20px 20px 15px 15px}
+ .modal.motion-dialog[open]{min-height:min(640px,calc(var(--usable-height,100dvh) - 24px));margin:auto auto calc(max(12px,env(safe-area-inset-bottom)) + var(--keyboard-inset,0px));max-height:calc(var(--usable-height,100dvh) - 24px);border-radius:20px 20px 15px 15px}
  .modal.motion-dialog .dialog-head{position:relative;padding-top:30px;touch-action:pan-x}
  .modal.motion-dialog .dialog-head:before{content:"";position:absolute;top:10px;left:calc(50% - 17px);width:34px;height:4px;border-radius:4px;background:var(--line-strong)}
  .modal.motion-dialog .dialog-footer{padding-bottom:max(15px,env(safe-area-inset-bottom))}

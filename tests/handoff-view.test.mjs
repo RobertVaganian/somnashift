@@ -30,7 +30,7 @@ test('a submitted read-through uses its exact snapshot while a new draft changes
  s=transition(s,{type:'ROLE',actor:'alex'});s=transition(s,{type:'START_UPDATE'});
  s=transition(s,{type:'EDIT_TASK',patientId:'p412',taskId:'t412',text:'Confirm availability with the day team',owner:'taylor',due:'10:30'});
  assert.equal(makeBriefing({patients:s.versions[0].patients,version:s.versions[0]}),original);
- assert.match(original,/Submitted handoff v1/);assert.match(original,/Alex Morgan → Jordan Lee/);assert.match(original,/08:15/);assert.doesNotMatch(original,/10:30/);
+ assert.match(original,/Submitted handoff v1/);assert.match(original,/Robert Vaganian → Jordan Lee/);assert.match(original,/08:15/);assert.doesNotMatch(original,/10:30/);
  assert.ok(restoreState(JSON.stringify(s)));
 });
 test('action edits report every changed field and remain restricted to an outgoing draft',()=>{

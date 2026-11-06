@@ -43,6 +43,12 @@ These five queries are functional checks, not an accuracy benchmark or clinical 
 
 The automated tests cover readable version pairs, draft exclusion, identity changes, source identifiers, input escaping, stale results, explicit model startup, repeated requests, cancellation, failure and deadlines. Existing handoff, recovery, routing and contrast checks also pass.
 
+## Reading a result
+
+The question and search action sit above one closest matching change. Its two source versions remain visible; further matches are collapsed until requested. Model details and cache controls live under **Model & privacy**.
+
+A new result fades in over 260 ms with 8 px of movement. The same entrance applies to a new guided example, but opening a disclosure does not replay it. Reduced motion removes the entrance. After a completed search, focus moves to the result heading and the result is brought into view without changing the handoff.
+
 ## Dependencies and notices
 
 The core app and guided mode remain buildless and self-hosted. Local search imports its runtime after opt-in:

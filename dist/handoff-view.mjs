@@ -20,7 +20,7 @@ export function filterPatients(patients,{filter='all',query=''}={}) {
 export function makeBriefing({patients,version=null,recipient=null,unverified=false,conflict=false}) {
   const recipientId=version?.recipient||recipient;
   const lines=['SOMNASHIFT · FICTIONAL DEMO',version?`Submitted handoff v${version.number} · ${version.createdAt}`:'UNSENT LOCAL DRAFT · subject to change',
-    `Alex Morgan → ${ACTORS[recipientId]?.name||'Recipient not chosen'}`,
+    `Robert Vaganian → ${ACTORS[recipientId]?.name||'Recipient not chosen'}`,
     'For the handoff conversation. This copy does not send or acknowledge information.'];
   if(unverified)lines.push('DRAFT CHECK: sample dictation still needs manual verification.');
   if(conflict)lines.push('DRAFT CHECK: a competing note is unresolved.');

@@ -20,7 +20,7 @@ The larger-text setting retains wrapping at 320 px. Compact illustrated status b
 
 Navigation rows share an icon column, text column, padding and line height. The three desktop footer rows measured equal icon/text positions and zero center offset. Status notices use explicit icon, message and dismiss columns, so wrapping stays inside the message column. Success feedback floats above navigation instead of shifting the note.
 
-Dialogs keep the title and actions visible around one scrolling body. Phone forms avoid automatically raising the keyboard on open. The version-specific acknowledgment action identifies the selected version and retains its full meaning in the confirmation dialog.
+Dialogs keep the title and actions visible around one scrolling body. Phone forms avoid automatically raising the keyboard on open. Work sheets share a 640 px minimum height, capped by the available viewport, so short steps retain a consistent position. The version-specific acknowledgment action identifies the selected version and retains its full meaning in the confirmation dialog.
 
 ## Owner selection
 
@@ -34,6 +34,6 @@ The same owner menu serves draft actions and action-board filters. Four 48 px op
 
 The case study uses live isolated views inside CSS phone frames. The Now phone stays upright to avoid rotated text resampling. The screen matches its frame width; mobile hero spacing accounts for the full visual bounds of all three phones.
 
-![Mobile case-study composition and workspace AI access](screenshots/access/access-and-case.jpg)
+![Mobile case-study hero](screenshots/access/access-and-case.jpg)
 
 Browser checks covered the working views at 320, 375, 390, 430, 768 and 1024 px. No horizontal document overflow was observed. Contrast checks cover defined text/surface pairs; they do not establish complete accessibility compliance. Physical iPhone/Safari, virtual keyboard and screen-reader checks remain pending. See [verification](verification.md).

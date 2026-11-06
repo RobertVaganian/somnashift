@@ -6,7 +6,7 @@ Use synthetic records only. Invite outgoing and incoming nurses where possible, 
 
 ## Ten-minute session
 
-1. Ask the participant to prepare and send Alex’s handoff without describing the controls. Observe whether the unassigned follow-up and named recipient are found.
+1. Ask the participant to prepare and send Robert’s handoff without describing the controls. Observe whether the unassigned follow-up and named recipient are found.
 2. Switch to Jordan. Ask what has happened to the handoff and what has not. Observe the distinction between sent, delivered, viewed and acknowledged.
 3. Ask the participant to clarify the expected follow-up time. Observe whether the question’s patient and version are understood.
 4. After the answer, ask them to confirm their review. Introduce v2 and ask what their earlier confirmation covers.

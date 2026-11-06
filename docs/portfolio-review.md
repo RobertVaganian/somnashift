@@ -6,7 +6,7 @@ Seven connected tasks demonstrate the handoff and the work that follows it. All 
 | --- | --- | --- |
 | 1 | Prepare the outgoing shift | Patient notes, the missing task owner and final-review entry are visible. |
 | 2 | Assign an owner and choose Jordan | Sending creates v1. Delivery is a separate event. |
-| 3 | Ask and answer a clarification | The question stays with room 412 and v1. Alex replies from Updates. |
+| 3 | Ask and answer a clarification | The question stays with room 412 and v1. Robert replies from Updates. |
 | 4 | Acknowledge the reviewed version | An explicit review checkbox is required; confirmation belongs to v1. |
 | 5 | Inspect an update | The room-419 addition appears in v2; the earlier acknowledgment remains with v1. |
 | 6 | Record incoming work | A factual result is stored separately from the submitted handoff. |
