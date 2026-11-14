@@ -104,3 +104,7 @@ body:has(input:focus,textarea:focus,select:focus) .ai-fab{visibility:hidden;poin
 }
 
 body:has(dialog[open]) .ai-fab{visibility:hidden;pointer-events:none}
+
+.ai-fab-mobile-label{display:none}
+@media(max-width:900px){.ai-fab-label{display:none}.ai-fab-mobile-label{display:inline}.ai-fab{gap:7px}}
+@media(max-width:900px){.brief-dialog .brief-search textarea{resize:none}}

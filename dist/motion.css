@@ -84,3 +84,13 @@ body,.sidebar,.detail-panel,.action-card,.bottom-nav,.mobile-brand,.modal,.dialo
 @media(forced-colors:active){.owner-option[data-active]{outline:1px solid Highlight}.owner-option[aria-selected=true]{color:Highlight}}
 @media(prefers-reduced-motion:reduce){.owner-trigger>svg{transition:none}}
 html[data-reduce-motion=true] .owner-trigger>svg{transition:none}
+
+.dialog-head>div{min-width:0;flex:1}
+.dialog-head>.icon-button{flex-shrink:0;align-self:center}
+.dialog-body{scrollbar-width:thin;scrollbar-color:var(--line-strong) transparent}
+.dialog-body::-webkit-scrollbar{width:6px;height:6px}
+.dialog-body::-webkit-scrollbar-thumb{background:var(--line-strong);border-radius:8px}
+.dialog-body::-webkit-scrollbar-track,.dialog-body::-webkit-scrollbar-corner{background:transparent}
+.dialog-body::-webkit-scrollbar-button{display:none;width:0;height:0}
+@media(max-width:900px){.dialog-body textarea{resize:none}}
+@supports selector(::-webkit-scrollbar){.dialog-body{scrollbar-width:auto;scrollbar-color:auto;overflow-x:hidden}}

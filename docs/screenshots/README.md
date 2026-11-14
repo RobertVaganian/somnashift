@@ -18,3 +18,5 @@ The images show fictional records in the implemented browser prototype. Device f
 The README cover in `../media/overview.jpg` arranges three existing phone captures with project typography. It does not invent app screens. Its reproducible layout is in `../media/overview.html`.
 
 The 35-second video in `dist/media/` presents seven still captures with editorial holds, fades and optional English captions. It is labelled as an edited walkthrough and does not claim live interaction timing. Regenerate it with `python scripts/make-walkthrough.py` when Pillow and FFmpeg are available.
+
+Before a capture, keep the capture tab active and use its Park pointer outside capture control. The pointer must sit in the excluded outer margin. Check the final saved crop, including the quiet space between labels and cards. `python scripts/review-captures.py` (Pillow) flags unexpected blue pointer highlights in the warm palette; it supplements visual inspection and does not detect every possible cursor.

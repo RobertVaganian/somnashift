@@ -12,7 +12,7 @@
   Mobile shift handoff · Product design & working prototype<br>
   Designed by **Robert Vaganian**
 
-  [![Version](https://img.shields.io/badge/version-0.8.1-854e40?style=flat&labelColor=342c29)](package.json)
+  [![Version](https://img.shields.io/badge/version-0.8.2-854e40?style=flat&labelColor=342c29)](package.json)
   [![Checks](https://img.shields.io/github/actions/workflow/status/RobertVaganian/somnashift/verify.yml?branch=main&label=checks&style=flat&labelColor=342c29&color=854e40)](https://github.com/RobertVaganian/somnashift/actions/workflows/verify.yml)
   [![JavaScript](https://img.shields.io/badge/JavaScript-ES_modules-854e40?style=flat&labelColor=342c29)](dist/app.mjs)
   [![Node](https://img.shields.io/badge/Node-%E2%89%A522-854e40?style=flat&labelColor=342c29)](package.json)
@@ -32,7 +32,7 @@ A sent message is not a completed handoff. SomnaShift keeps patient notes, named
 
 **The scenario:** Jordan has reviewed **v1**. Robert adds a room-419 note and sends **v2**. The earlier confirmation stays with v1; Jordan can find the new information, ask a question and acknowledge v2 separately. Work completed afterward gets its own record.
 
-![SomnaShift: prepare a handoff, review its changes and follow through](docs/media/overview.jpg?v=0.8.1)
+![SomnaShift: prepare a handoff, review its changes and follow through](docs/media/overview.jpg?v=0.8.2)
 
 ## Inside the handoff
 
@@ -40,14 +40,14 @@ Six moments from the working mobile prototype. Select a screen to inspect it at 
 
 <table>
   <tr>
-    <td width="33%" valign="top" align="center"><strong>01 · Prepare</strong><br><br><a href="docs/screenshots/portfolio/01-prepare.jpg?v=0.8.1"><img src="docs/screenshots/portfolio/01-prepare.jpg?v=0.8.1" width="240" alt="Outgoing shift with four patient notes and an action missing its owner"></a><br><sub>Find the outstanding checks before sending.</sub></td>
-    <td width="33%" valign="top" align="center"><strong>02 · Clarify</strong><br><br><a href="docs/screenshots/portfolio/03-clarify.jpg?v=0.8.1"><img src="docs/screenshots/portfolio/03-clarify.jpg?v=0.8.1" width="240" alt="A question linked to its patient and submitted version"></a><br><sub>Keep the question with its patient and version.</sub></td>
-    <td width="33%" valign="top" align="center"><strong>03 · Acknowledge</strong><br><br><a href="docs/screenshots/portfolio/04-acknowledge.jpg?v=0.8.1"><img src="docs/screenshots/portfolio/04-acknowledge.jpg?v=0.8.1" width="240" alt="Explicit acknowledgment of a submitted handoff version"></a><br><sub>Confirm the information actually reviewed.</sub></td>
+    <td width="33%" valign="top" align="center"><strong>01 · Prepare</strong><br><br><a href="docs/screenshots/portfolio/01-prepare.jpg?v=0.8.2"><img src="docs/screenshots/portfolio/01-prepare.jpg?v=0.8.2" width="240" alt="Outgoing shift with four patient notes and an action missing its owner"></a><br><sub>Find the outstanding checks before sending.</sub></td>
+    <td width="33%" valign="top" align="center"><strong>02 · Clarify</strong><br><br><a href="docs/screenshots/portfolio/03-clarify.jpg?v=0.8.2"><img src="docs/screenshots/portfolio/03-clarify.jpg?v=0.8.2" width="240" alt="A question linked to its patient and submitted version"></a><br><sub>Keep the question with its patient and version.</sub></td>
+    <td width="33%" valign="top" align="center"><strong>03 · Acknowledge</strong><br><br><a href="docs/screenshots/portfolio/04-acknowledge.jpg?v=0.8.2"><img src="docs/screenshots/portfolio/04-acknowledge.jpg?v=0.8.2" width="240" alt="Explicit acknowledgment of a submitted handoff version"></a><br><sub>Confirm the information actually reviewed.</sub></td>
   </tr>
   <tr>
-    <td width="33%" valign="top" align="center"><strong>04 · Compare</strong><br><br><a href="docs/screenshots/portfolio/05-update.jpg?v=0.8.1"><img src="docs/screenshots/portfolio/05-update.jpg?v=0.8.1" width="240" alt="The exact patient-note difference in a later handoff version"></a><br><sub>Read the change without replacing the earlier record.</sub></td>
-    <td width="33%" valign="top" align="center"><strong>05 · Follow through</strong><br><br><a href="docs/screenshots/portfolio/06-work.jpg?v=0.8.1"><img src="docs/screenshots/portfolio/06-work.jpg?v=0.8.1" width="240" alt="Incoming colleague entering a factual completion result"></a><br><sub>Record what was done, who did it and when.</sub></td>
-    <td width="33%" valign="top" align="center"><strong>06 · Keep the history</strong><br><br><a href="docs/screenshots/portfolio/07-history.jpg?v=0.8.1"><img src="docs/screenshots/portfolio/07-history.jpg?v=0.8.1" width="240" alt="Work history with author, time and source version"></a><br><sub>Append a correction while retaining the first entry.</sub></td>
+    <td width="33%" valign="top" align="center"><strong>04 · Compare</strong><br><br><a href="docs/screenshots/portfolio/05-update.jpg?v=0.8.2"><img src="docs/screenshots/portfolio/05-update.jpg?v=0.8.2" width="240" alt="The exact patient-note difference in a later handoff version"></a><br><sub>Read the change without replacing the earlier record.</sub></td>
+    <td width="33%" valign="top" align="center"><strong>05 · Follow through</strong><br><br><a href="docs/screenshots/portfolio/06-work.jpg?v=0.8.2"><img src="docs/screenshots/portfolio/06-work.jpg?v=0.8.2" width="240" alt="Incoming colleague entering a factual completion result"></a><br><sub>Record what was done, who did it and when.</sub></td>
+    <td width="33%" valign="top" align="center"><strong>06 · Keep the history</strong><br><br><a href="docs/screenshots/portfolio/07-history.jpg?v=0.8.2"><img src="docs/screenshots/portfolio/07-history.jpg?v=0.8.2" width="240" alt="Work history with author, time and source version"></a><br><sub>Append a correction while retaining the first entry.</sub></td>
   </tr>
 </table>
 
@@ -57,7 +57,7 @@ Six moments from the working mobile prototype. Select a screen to inspect it at 
 
 “Who took over the family update?” finds room 414’s owner change. “Which deadline moved?” finds the expected-time change. The app calculates the differences; a small semantic model ranks them. Names, times and before-and-after values come from the submitted snapshots.
 
-![Local search with the source versions attached](docs/screenshots/brief/local-desktop.jpg?v=0.8.1)
+![Local search with the source versions attached](docs/screenshots/brief/local-desktop.jpg?v=0.8.2)
 
 The **AI · Ask about changes** button opens search in the workspace. Two modes make it possible to try:
 
@@ -82,8 +82,8 @@ Reading a notification never acknowledges a handoff. The inbox uses fictional lo
 
 <table>
   <tr>
-    <td width="50%" align="center" valign="top"><strong>Notice the arrival</strong><br><br><a href="docs/screenshots/notifications/launcher-mobile.jpg?v=0.8.1"><img src="docs/screenshots/notifications/launcher-mobile.jpg?v=0.8.1" width="280" alt="The workspace bell with two unread notifications"></a></td>
-    <td width="50%" align="center" valign="top"><strong>Return to its source</strong><br><br><a href="docs/screenshots/notifications/inbox-mobile.jpg?v=0.8.1"><img src="docs/screenshots/notifications/inbox-mobile.jpg?v=0.8.1" width="280" alt="Unread handoff delivery and clarification reply in the inbox"></a></td>
+    <td width="50%" align="center" valign="top"><strong>Notice the arrival</strong><br><br><a href="docs/screenshots/notifications/launcher-mobile.jpg?v=0.8.2"><img src="docs/screenshots/notifications/launcher-mobile.jpg?v=0.8.2" width="280" alt="The workspace bell with two unread notifications"></a></td>
+    <td width="50%" align="center" valign="top"><strong>Return to its source</strong><br><br><a href="docs/screenshots/notifications/inbox-mobile.jpg?v=0.8.2"><img src="docs/screenshots/notifications/inbox-mobile.jpg?v=0.8.2" width="280" alt="Unread handoff delivery and clarification reply in the inbox"></a></td>
   </tr>
 </table>
 

@@ -29,3 +29,19 @@
 @media(max-width:600px){.case-hero .hero-phones{--hero-device-scale:.54;--hero-side-shift:clamp(74px,24vw,120px);height:390px;margin-top:28px}}
 @media(min-width:415px) and (max-width:600px){.case-hero .hero-phones{--hero-device-scale:.61;height:440px}}
 @media(max-width:374px){.case-hero .hero-phones{--hero-device-scale:.46;height:340px}.case-hero>.case-media-caption{margin-top:18px}}
+
+@media(max-width:900px){
+ .case-showcase{grid-template-columns:minmax(0,1fr)}
+ .showcase-notes{min-width:0;max-width:100%}
+ .version-proof{grid-template-columns:7px minmax(0,1fr) 7px minmax(0,1fr)}
+ .version-proof>div{min-width:0;overflow-wrap:anywhere}
+}
+
+.case-hero .case-tags{align-items:center;gap:8px}
+.case-hero .case-tags>span,.case-hero .case-tags>a{
+ display:inline-flex;align-items:center;justify-content:center;gap:7px;
+ box-sizing:border-box;min-height:34px;padding:6px 11px;
+ border:1px solid var(--line-strong);border-radius:100px;
+ font-size:13px;font-weight:450;line-height:20px;white-space:nowrap;
+}
+.case-hero .case-tags>a>svg{display:block;flex-shrink:0;width:14px;height:14px}
