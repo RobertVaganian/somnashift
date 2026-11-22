@@ -4,7 +4,7 @@ The Change brief helps a reviewer find a recorded difference between two submitt
 
 ## Interaction
 
-A named floating AI entry stays available in the working interface, including the first draft. It opens local mode directly. If there is no readable version pair, the panel explains the requirement and offers an isolated sample in a separate tab. The model still needs an explicit Load model & search action. The launcher is hidden while a dialog or a form field has focus; the case-study phone embeds omit it.
+On mobile, the AI button sits beside notifications. Desktop shows an Ask about changes button. Both stay available from the first draft. It opens local mode directly. If there is no readable version pair, the panel explains the requirement and offers an isolated sample in a separate tab. The model still needs an explicit Load model & search action. The launcher is hidden while a dialog or a form field has focus; the case-study phone embeds omit it.
 
 The guided mode opens immediately with three prepared matches: ownership, expected time and an added shift note. It is explicitly labelled as a prepared demonstration with no model running.
 

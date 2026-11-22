@@ -7,10 +7,12 @@
 <div class="stage"><div class="phone"><div class="phone-screen"><div class="phone-status"><span id="capture-time">6:42</span><span>▮▮▮ <svg width="20" height="11" viewBox="0 0 18 10" aria-hidden="true"><rect x="1" y="1" width="14" height="8" rx="2" stroke="currentColor" fill="none"/><rect x="3" y="3" width="10" height="4" rx=".7" fill="currentColor"/><path d="M17 3v4" stroke="currentColor"/></svg></span></div><iframe title="SomnaShift phone capture"></iframe></div><div class="phone-speaker"></div><span class="phone-key"></span></div></div>
 <button id="capture-park" type="button" tabindex="-1" aria-label="Park pointer outside capture">Park</button><script type="module">
 const park=document.querySelector('#capture-park');
-park.addEventListener('pointerdown',event=>event.preventDefault());
-park.addEventListener('click',()=>window.scrollTo({left:0,top:0,behavior:'instant'}));
+park.addEventListener('click',()=>{
+ park.focus({preventScroll:true});
+ window.scrollTo({left:0,top:0,behavior:'instant'});
+});
 const params=new URLSearchParams(location.search),frame=document.querySelector('iframe');
 const route=params.get('view')||'shift';params.delete('view');const workspace=params.has('workspace');params.delete('workspace');if(!workspace)params.set('embed','1');params.set('theme','daylight');
 frame.src=new URL('../dist/'+route+'/?'+params,location.href);
-frame.addEventListener('load',()=>{const doc=frame.contentDocument;const update=()=>{document.querySelector('.phone').dataset.dialog=String(Boolean(doc.querySelector('dialog[open]')));const time=doc.querySelector('.shift-clock strong,.now-time-value');if(time)document.querySelector('#capture-time').textContent=time.textContent.replace(/^0/,'');};new MutationObserver(update).observe(doc.body,{childList:true,subtree:true,attributes:true,attributeFilter:['open']});update();});
+frame.addEventListener('load',()=>{const doc=frame.contentDocument;const update=()=>{document.querySelector('.phone').dataset.dialog=String(Boolean(doc.querySelector('dialog[open]')));const time=doc.querySelector('.shift-clock strong,[data-action="demo-clock"] strong');if(time)document.querySelector('#capture-time').textContent=time.textContent.replace(/^0/,'');};new MutationObserver(update).observe(doc.body,{childList:true,subtree:true,attributes:true,attributeFilter:['open']});update();});
 </script></html>

@@ -1,6 +1,6 @@
 # Product captures
 
-The images show fictional records in the implemented browser prototype. Device frames are CSS illustrations, not a claim of native iOS deployment. The portfolio phone captures use a 390 px app viewport and are saved at 848 × 1776 px. `scripts/capture-frame.html` contains the reusable frame layout. `node scripts/prepare-captures.mjs` prepares local capture pages under `/capture-preview/` for the development server; the build removes those pages. Browser captures use a 2× canvas, followed only by cropping of the surrounding canvas. Captures are cropped for presentation; interface content is not repainted or redrawn.
+The images show fictional records in the implemented browser prototype. Device frames are CSS illustrations, not a claim of native iOS deployment. The README phone captures show the interactive workspace at a 390 px viewport and are saved at 848 × 1776 px. `scripts/capture-frame.html` contains the reusable frame layout. `node scripts/prepare-captures.mjs` prepares local capture pages under `/capture-preview/` for the development server; the build removes those pages. Browser captures use a 2× canvas, followed only by cropping of the surrounding canvas. Captures are cropped for presentation; interface content is not repainted or redrawn.
 
 | Folder or file | Content |
 | --- | --- |
@@ -10,7 +10,7 @@ The images show fictional records in the implemented browser prototype. Device f
 | `brief/local-desktop.jpg`, `brief/local-mobile.jpg` | Results from the real local semantic model |
 | `brief/case-ai.jpg` | The dedicated on-device AI case-study section |
 | `access/` | Visible AI entry and the responsive case-study hero |
-| `notifications/` | The workspace bell and the colleague-specific inbox at 390 px |
+| `notifications/` | The workspace with the unread badge, and the open colleague-specific inbox at 390 px |
 | `fields/` | Shared owner menu and phone presentation |
 | `readability/` | Reading-scale and alignment comparisons |
 | `case-composition.jpg`, `case-now.jpg` | Case-study phone compositions |
