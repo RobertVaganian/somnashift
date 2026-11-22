@@ -45,3 +45,36 @@
  font-size:13px;font-weight:450;line-height:20px;white-space:nowrap;
 }
 .case-hero .case-tags>a>svg{display:block;flex-shrink:0;width:14px;height:14px}
+
+/* Keep the devices and their captions within the reading flow. */
+@media (max-width: 1180px) {
+  .case-page .case-width { margin-inline: clamp(20px, 5vw, 50px); }
+  .case-page .case-showcase { grid-template-columns: minmax(0, 1fr); }
+  .case-page .showcase-phones { height: 512px; margin: 22px 0 0; transform: none; align-items: flex-start; gap: 18px; }
+  .case-page .showcase-phones > .phone { margin-inline: -24px; transform-origin: top center; transform: scale(.83); }
+  .case-page .theme-phone-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: start; gap: 14px; margin: 36px 0 0; }
+  .case-page .theme-phone-row > div { display: grid; justify-items: center; min-width: 0; }
+  .case-page .theme-phone-row .phone { transform-origin: top center; transform: scale(.74); margin: 0 0 -157px; }
+}
+@media (max-width: 900px) {
+  .case-page .case-header > div { gap: 8px; }
+  .case-page .case-header .button { min-height: 44px; }
+  .case-page .case-flow { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .case-page .theme-phone-row .phone { transform: scale(.63); margin-bottom: -224px; }
+}
+@media (max-width: 700px) {
+  .case-page .case-header { padding-inline: 18px; gap: 8px; }
+  .case-page .case-header > div { margin-inline-start: auto; }
+  .case-page .case-hero h1 { font-size: clamp(40px, 10vw, 65px); }
+  .case-page .case-hero .hero-phones { --hero-device-scale: .58; max-width: 100%; height: 365px; overflow: clip; }
+  .case-page .case-hero .hero-main { position: absolute; }
+  .case-page .case-hero .hero-first, .case-page .case-hero .hero-third { display: none; }
+  .case-page .case-media-caption { padding-inline: 18px; font-size: 13px; }
+  .case-page .showcase-phones { height: 315px; gap: 8px; }
+  .case-page .showcase-phones > .phone { transform: scale(.49); margin-inline: -71px; }
+  .case-page .theme-phone-row { grid-template-columns: minmax(0, 1fr); gap: 22px; }
+  .case-page .theme-phone-row > div { margin: 0; }
+  .case-page .theme-phone-row .phone { transform: scale(.82); margin-bottom: -108px; }
+  .case-page :is(.chapter-copy, .showcase-notes) > p { font-size: 16px; }
+  .case-page .case-video summary { min-height: 44px; }
+}
