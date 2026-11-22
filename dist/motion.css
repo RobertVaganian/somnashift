@@ -20,7 +20,7 @@ input[type=checkbox]:focus-visible,input[type=radio]:focus-visible{outline-offse
 .dialog-body{overscroll-behavior:contain;-webkit-overflow-scrolling:touch;scrollbar-gutter:stable;scroll-padding:18px}
 .dialog-head,.dialog-footer{flex-shrink:0}
 .modal.motion-dialog::backdrop{background:rgba(23,17,13,var(--scrim-alpha,.4));backdrop-filter:none;animation:backdrop-in 180ms ease-out}
-.modal.motion-dialog[data-closing]::backdrop{animation:backdrop-out 130ms ease-in forwards}
+.modal.motion-dialog[data-closing]::backdrop{animation:backdrop-out 140ms ease-in forwards}
 .modal.motion-dialog{overscroll-behavior:contain;max-height:calc(var(--usable-height,100dvh) - 40px);transform-origin:50% 100%}
 .modal.motion-dialog[data-closing]{pointer-events:none}
 .modal.motion-dialog .dialog-head>button{min-height:44px;min-width:44px}
@@ -58,8 +58,6 @@ html[data-reduce-motion=true] button:active:not(:disabled),html[data-reduce-moti
 
 body,.sidebar,.detail-panel,.action-card,.bottom-nav,.mobile-brand,.modal,.dialog-head,.dialog-footer{transition:background-color 150ms,color 150ms,border-color 150ms}
 
-.motion-exit{position:fixed;inset:0;z-index:100;pointer-events:none;background:#17110d66}.motion-exit *{pointer-events:none!important}
-
 @media(max-width:900px){.dialog-body input,.dialog-body textarea,.dialog-body select{font-size:16px}}
 
 @media(max-width:900px){body:has(.handoff-bar) .notice.success{bottom:calc(86px + var(--handoff-bar-height,76px) + env(safe-area-inset-bottom))}}
@@ -94,3 +92,56 @@ html[data-reduce-motion=true] .owner-trigger>svg{transition:none}
 .dialog-body::-webkit-scrollbar-button{display:none;width:0;height:0}
 @media(max-width:900px){.dialog-body textarea{resize:none}}
 @supports selector(::-webkit-scrollbar){.dialog-body{scrollbar-width:auto;scrollbar-color:auto;overflow-x:hidden}}
+
+
+/* Keep the toolbar and the two bottom controls in stable viewport positions. */
+@media (max-width:900px) {
+ html {scrollbar-gutter:auto}
+ body:not(.embed-view) .mobile-brand {
+  padding:calc(8px + env(safe-area-inset-top)) 0 8px;
+  min-height:calc(61px + env(safe-area-inset-top));gap:8px;
+ }
+ body:not(.embed-view) .mobile-brand .brand {min-width:0;min-height:44px;font-size:21px}
+ body:not(.embed-view) .mobile-brand .brand-mark {flex-shrink:0;width:28px;height:28px}
+ body:not(.embed-view) .mobile-tools {flex:none;margin-inline-start:auto}
+ .mobile-tools .mobile-ai>span {
+  display:grid;place-items:center;width:30px;height:30px;border-radius:50%;
+  background:var(--accent-soft);color:var(--accent);font-size:13px;font-weight:650;
+ }
+ .mobile-tools .mobile-ai:active>span {background:var(--accent);color:var(--accent-ink)}
+ body:not(.embed-view) .bottom-nav {height:calc(62px + env(safe-area-inset-bottom));min-height:62px}
+ body:not(.embed-view) .bottom-nav .nav-item {min-height:46px;gap:3px}
+ body:not(.embed-view) .bottom-nav .nav-item.active {background:var(--accent-soft)}
+ body:not(.embed-view) .bottom-nav .nav-item svg {transform:none;transition:none}
+ body:not(.embed-view) .handoff-bar {bottom:calc(62px + env(safe-area-inset-bottom));padding-block:10px}
+ body:not(.embed-view) .workspace-footer {padding-bottom:calc(80px + env(safe-area-inset-bottom))}
+ body:not(.embed-view) .modal.motion-dialog[open] {
+  min-height:0;max-height:calc(var(--usable-height,100dvh) - 16px);
+  overflow:hidden;overscroll-behavior:contain;
+ }
+ body:not(.embed-view) .modal.motion-dialog .dialog-body {scrollbar-gutter:auto}
+ .modal.motion-dialog .dialog-head {touch-action:none}
+}
+@media (max-width:600px) {
+ body:not(.embed-view) .modal.motion-dialog[open] {
+  position:fixed;inset:auto 0 var(--keyboard-inset,0px);width:100%;max-width:none;
+  margin:0;border-radius:18px 18px 0 0;border-width:1px 0 0;
+ }
+ body:not(.embed-view) .modal.motion-dialog .dialog-head {padding-block:24px 12px;align-items:center}
+ body:not(.embed-view) .modal.motion-dialog .dialog-head h2 {font-size:clamp(21px,5.8vw,25px)}
+ body:not(.embed-view) .modal.motion-dialog .dialog-footer {
+  padding-block:10px max(12px,env(safe-area-inset-bottom));
+ }
+ body:not(.embed-view) .modal.motion-dialog .dialog-footer:empty {display:none}
+}
+@media (hover:none), (pointer:coarse) {
+ button:active:not(:disabled),a[data-nav]:active,.bottom-nav .nav-item:active {transform:none}
+ .mobile-brand,.bottom-nav,.handoff-bar {transition:none}
+}
+
+@media (max-width:360px) {
+ body:not(.embed-view) .page-heading {margin-block:16px 14px}
+ body:not(.embed-view) .role-switch {margin-bottom:14px}
+ body:not(.embed-view) .shift-summary {padding-block:12px;margin-bottom:14px}
+ body:not(.embed-view) .patient-card {min-height:96px;padding-block:12px}
+}

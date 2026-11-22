@@ -2,7 +2,7 @@ import {ACTORS,SECTIONS,clone,initialState,transition,blockers,statusFor,restore
 import {collectActions,filterPatients,makeBriefing} from './handoff-view.mjs';
 import {nowData,dueState} from './now-view.mjs';
 import {workspaceRecord,restoreWorkspace,formKey,canResumeForm} from './workspace-view.mjs';
-import {createMotion} from './motion.mjs';
+import {createMotion} from './motion.mjs?v=phone-workspace';
 import {ownerPicker,installOwnerPickers,syncOwnerPickers,closeOwnerPickers} from './owner-picker.mjs';
 import {appPath} from './paths.mjs';
 import {changeReview,searchDocuments,BRIEF_EXAMPLES} from './change-brief.mjs';
@@ -38,8 +38,9 @@ const briefRuntime=createBriefRuntime(value=>{if(ui.modal==='brief'&&!briefClosi
 function revealBriefResult(){const result=document.querySelector('.brief-results');if(!result)return;result.scrollIntoView({block:'nearest',behavior:'instant'});result.querySelector('#brief-result-heading')?.focus({preventScroll:true});}
 function currentReview(){return changeReview(state,currentVersion()?.id);}
 function briefLaunch(){const review=currentReview();if(!review||!review.records.length)return '';return `<aside class="brief-launch"><span class="brief-launch-icon">${icon('search',21)}</span><div><strong>Find a recorded change.</strong><p>${review.records.length} changes · v${review.before.number} → v${review.after.number}</p></div>${button('Open change brief','brief','secondary small')}</aside>`;}
-function quickAI(){
+function quickAI(compact=false){
  if(params.has('embed')||['watch','case-study'].includes(route()))return '';
+ if(compact)return '<button class="icon-button mobile-ai" type="button" data-action="brief-quick" aria-haspopup="dialog" aria-label="AI: ask about changes"><span aria-hidden="true">AI</span></button>';
  const content=`<span class="ai-fab-badge" aria-hidden="true">AI</span><span class="ai-fab-label">Ask about changes</span><span class="ai-fab-mobile-label">Changes</span>${icon('chat',18)}`;
  return `<button class="ai-fab" type="button" data-action="brief-quick" aria-haspopup="dialog" aria-label="AI: ask about changes">${content}</button>`;
 }
@@ -88,14 +89,14 @@ function run(action,message='',stay=false){try{const inputKey=canResumeForm(stat
 function showError(text){ui.error=text;const target=document.querySelector('[data-form-error]');if(target){target.hidden=false;target.textContent=text;target.scrollIntoView({block:'nearest'});target.focus({preventScroll:true});}else render();}
 function setTheme(theme){appearance=theme;preference('somnashift.appearance',theme);render();}
 function themeControl(){return `<div class="theme-control" aria-label="Appearance">${[['daylight','sun','Daylight'],['twilight','dusk','Twilight'],['amber','moon','Amber night']].map(([id,i,title])=>`<button class="icon-button ${appearance===id?'selected':''}" data-action="theme" data-value="${id}" aria-label="${title}" aria-pressed="${appearance===id}" title="${title}">${icon(i,17)}</button>`).join('')}</div>`;}
-function navItem(label,target,i,count=0){return `<a class="nav-item ${route()===target?'active':''}" href="${href(target)}" data-nav="${target}">${icon(i)}<span>${label}</span>${count?`<span class="nav-count">${count}</span>`:''}</a>`;}
+function navItem(label,target,i,count=0){return `<a class="nav-item ${route()===target?'active':''}" href="${href(target)}" data-nav="${target}" ${route()===target?'aria-current="page"':''}>${icon(i)}<span>${label}</span>${count?`<span class="nav-count">${count}</span>`:''}</a>`;}
 function shell(content){return `<a class="skip-link" href="#main-content">Skip to content</a><div class="app-shell ${params.has('embed')?'embedded':''}">
   <aside class="sidebar"><a class="brand" href="${href('shift')}" data-nav="shift">${mark()}<span>SomnaShift<span class="brand-sub">Carry the context forward</span></span></a>
     <div class="ward-context"><span class="ward-symbol">4B</span><div><strong>North wing</strong><span>Fictional ward · 4 patients</span></div></div>
     <div class="nav-label">WORKSPACE</div><nav aria-label="Main navigation">${navItem('Shift handoff','shift','patients')}${navItem('For me now','now','clock')}${navItem('Actions','actions','check')}${navItem('Updates','updates','chat',pendingQuestions().length)}</nav>
     <button class="guide-link" data-action="guide"><span class="guide-icon">${icon('book',19)}</span><span><strong>Walk through a handoff</strong><small>Explore both sides of the shift</small></span>${icon('chevron',16)}</button>
     <div class="sidebar-bottom"><a class="subnav" href="${href('case-study')}" data-nav="case-study">${icon('book',20)}<span>The design story</span>${icon('external',16)}</a><a class="subnav" href="${href('watch')}" data-nav="watch">${icon('watch',20)}<span>Watch companion</span></a><button class="subnav" data-action="settings">${icon('settings',20)}<span>Demo settings</span></button><p>Portfolio concept · Fictional data<br>${isolated?'Isolated view · not saved':'Review saved on this device'}</p></div>
-  </aside><div class="workspace"><header class="mobile-brand"><a class="brand" href="${href('shift')}" data-nav="shift">${mark()}<strong>SomnaShift</strong></a><span class="mobile-demo">Demo</span><div class="mobile-tools">${notificationButton()}<button class="icon-button" data-action="settings" aria-label="Demo settings">${icon('settings')}</button></div></header>
+  </aside><div class="workspace"><header class="mobile-brand"><a class="brand" href="${href('shift')}" data-nav="shift">${mark()}<strong>SomnaShift</strong></a><span class="mobile-demo">Demo</span><div class="mobile-tools">${quickAI(true)}${notificationButton()}${params.has('embed')?`<button class="icon-button" data-action="settings" aria-label="Demo settings">${icon('settings')}</button>`:''}</div></header>
   <div class="workspace-top"><span class="breadcrumb">Ward 4B <span>/</span> ${route()==='updates'?'Updates':route()==='actions'?'Actions':route()==='now'?'For me now':'Shift handoff'}</span><div class="top-tools"><span class="demo-label"><span></span>Fictional demo</span>${themeControl()}${notificationButton()}<button class="avatar avatar-small" data-action="role" aria-label="Switch demo colleague">${who().initials}</button></div></div>
   <main id="main-content" tabindex="-1">${state.offline?`<div class="notice warning">${icon('wifi',18)}<div class="notice-copy"><strong>You’re offline.</strong> Drafts stay on this device. Sending, questions and confirmations are paused.</div><button data-action="online">Reconnect</button></div>`:''}
   ${!storageAvailable?`<div class="notice warning">${icon('warning',18)}<span class="notice-copy">Browser storage is unavailable. This session will not survive a reload.</span></div>`:''}
@@ -307,7 +308,12 @@ function closeModal(){
  if(!ui.modal)return;captureActiveForm();
  if(ui.modal==='brief'&&['loading','searching'].includes(briefRuntime.value.phase)){briefClosing=true;briefRuntime.stop('Local search stopped. You can start it again.');briefClosing=false;}
  const returnTo=ui.returnModal;ui.returnModal=null;ui.error='';
- const finish=()=>{ui.modal=returnTo||null;render();if(!returnTo){const action=modalOpener?.dataset?.action;if(action){const candidates=[...document.querySelectorAll(`[data-action="${action}"]`)];const target=candidates.find(el=>el.getClientRects().length&&(!modalOpener?.dataset?.value||el.dataset.value===modalOpener.dataset.value));target?.focus({preventScroll:true});}}};
+ const finish=()=>{
+  ui.modal=returnTo||null;render();
+  if(returnTo)return;
+  if(modalOpener?.isConnected&&modalOpener.getClientRects().length)modalOpener.focus({preventScroll:true});
+  else document.querySelector('main')?.focus({preventScroll:true});
+ };
  if(returnTo)finish();else motion.close(finish);
 }
 function selectPatient(id){

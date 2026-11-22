@@ -96,10 +96,9 @@ body:has(.ai-fab) .workspace-footer{padding-bottom:100px}
 body:has(input:focus,textarea:focus,select:focus) .ai-fab{visibility:hidden;pointer-events:none}
 .brief-welcome-label{display:inline-block;font-size:12px;font-weight:650;letter-spacing:.12em;color:var(--accent);margin-bottom:15px}.brief-welcome h3{font-size:27px;font-weight:550;line-height:1.2;margin-bottom:15px;max-width:420px}.brief-welcome>p{font-size:16px;line-height:1.75;color:var(--muted)}.brief-welcome-context{padding:17px;background:var(--bg);border:1px solid var(--line);border-radius:9px;margin:24px 0}.brief-welcome-context strong{font-size:16px;font-weight:600;line-height:1.5;display:block}.brief-welcome-context p{font-size:15px;line-height:1.7;color:var(--muted);margin-top:8px}.brief-welcome>.small-note{font-size:13px;margin-top:15px;line-height:1.7}
 @media(max-width:900px){
- .ai-fab{right:14px;bottom:calc(79px + var(--handoff-bar-height,0px) + env(safe-area-inset-bottom));min-height:48px;gap:8px;padding:8px 13px 8px 9px;font-size:14px}
- .ai-fab-badge{height:28px;flex-basis:28px}.ai-fab>svg{width:17px;height:17px}
- body:has(.ai-fab) .notice.success{bottom:calc(143px + var(--handoff-bar-height,0px) + env(safe-area-inset-bottom))}
- body:has(.ai-fab) .workspace-footer{padding-bottom:calc(160px + var(--handoff-bar-height,0px) + env(safe-area-inset-bottom))}
+ .ai-fab{display:none}
+ body:has(.ai-fab) .notice.success{bottom:calc(77px + var(--handoff-bar-height,0px) + env(safe-area-inset-bottom))}
+ body:not(.embed-view):has(.ai-fab) .workspace-footer{padding-bottom:calc(80px + env(safe-area-inset-bottom))}
  .brief-welcome h3{font-size:25px}
 }
 
@@ -108,3 +107,6 @@ body:has(dialog[open]) .ai-fab{visibility:hidden;pointer-events:none}
 .ai-fab-mobile-label{display:none}
 @media(max-width:900px){.ai-fab-label{display:none}.ai-fab-mobile-label{display:inline}.ai-fab{gap:7px}}
 @media(max-width:900px){.brief-dialog .brief-search textarea{resize:none}}
+@media (max-width:600px) {
+ body:not(.embed-view) .brief-dialog.modal.motion-dialog[open]:has(.brief-welcome) {height:auto}
+}
