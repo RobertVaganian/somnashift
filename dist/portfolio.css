@@ -46,6 +46,41 @@
 }
 .case-hero .case-tags>a>svg{display:block;flex-shrink:0;width:14px;height:14px}
 
+/* Keep the handoff between two equal profile columns. */
+.case-page .story-strip { padding-inline: clamp(20px, 5vw, 50px); }
+.case-page .story-strip > .case-width { margin-inline: auto; }
+.story-strip .story-people {
+  display: grid;
+  grid-template-columns: minmax(0, 180px) minmax(0, 1fr) minmax(0, 180px);
+  align-items: start;
+}
+.story-strip .story-people > div:not(.story-line) { width: auto; min-width: 0; }
+.story-strip .story-line {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 100px) max-content;
+  align-self: center;
+  justify-content: center;
+  min-width: 0;
+  gap: 10px;
+}
+.story-strip .story-line span { position: static; }
+.story-strip .story-line div { width: 100%; min-width: 0; }
+.story-strip .case-flow { text-align: center; }
+
+@media (max-width: 600px) {
+  .story-strip .story-people {
+    grid-template-columns: minmax(0, 1fr) minmax(62px, .72fr) minmax(0, 1fr);
+    gap: clamp(8px, 3vw, 16px);
+  }
+  .story-strip .story-line {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-self: start;
+    margin-top: 16px;
+    gap: 5px 4px;
+  }
+  .story-strip .story-line div { grid-area: 2 / 1 / 3 / -1; }
+}
+
 /* Keep the devices and their captions within the reading flow. */
 @media (max-width: 1180px) {
   .case-page .case-width { margin-inline: clamp(20px, 5vw, 50px); }
